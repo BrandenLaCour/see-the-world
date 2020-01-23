@@ -1,7 +1,9 @@
+#See The World
+
 An app to share travel experiences with exciting photos, tips on traveling to those locations, and sharing stories.
 
 
-User stories:
+## User Stories
 
 The user first must register or log in.
 
@@ -22,7 +24,7 @@ On that page, they have a my account link in the nav, which will take them to th
 
 Also, the logo will be a link to have them go back to home.
 
-## User Stories
+
 
 --
 if the pic to add an article, they will be taken to the add article form. here they can add the required form options, choose a location that photo was from, and upload a photo. After they submit, it will take them to the filter page, where they can add a filter to the photo, they can click different buttons for different filter effects. after this, they will be redirected to the new article show page they recently submitted.
