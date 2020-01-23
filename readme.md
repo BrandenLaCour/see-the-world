@@ -1,4 +1,4 @@
-#See The World
+## See The World
 
 An app to share travel experiences with exciting photos, tips on traveling to those locations, and sharing stories.
 
@@ -29,7 +29,7 @@ Also, the logo will be a link to have them go back to home.
 --
 if the pic to add an article, they will be taken to the add article form. here they can add the required form options, choose a location that photo was from, and upload a photo. After they submit, it will take them to the filter page, where they can add a filter to the photo, they can click different buttons for different filter effects. after this, they will be redirected to the new article show page they recently submitted.
 
--
+--
 here if they are logged in as the user, they can edit the article, or delete it. A nice to have will be to delete the comments that they need to moderate.
 
 --
