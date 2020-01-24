@@ -78,7 +78,7 @@ Notifications when user recieves new comments or likes on photos. can click noti
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds -->
 
 ## Authors
-[Nehemias Alcantara](https://github.com/nemiasalc56)
+[Nehemias Alcantara](https://github.com/nemiasalc56) |
 [Branden LaCour](https://github.com/BrandenLaCour)
 
 
