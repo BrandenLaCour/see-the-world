@@ -20,7 +20,8 @@ const articleSchema = new mongoose.Schema({
 		default: Date.now
 	},
 	author: {
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
 		required: true
 	},
 	location: {
@@ -28,7 +29,10 @@ const articleSchema = new mongoose.Schema({
 		required: true
 	},
 	comments: [Comment.schema],
-	likes: Number
+	likes: [
+		type: mongoose.Schema.Types.ObjectId,
+		 ref: "User"
+	] // Article.find().where( user $in likes ) if we want to search all the users likes
 })
 
 const Article = mongoose.model('Article', articleSchema)
