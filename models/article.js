@@ -1,3 +1,6 @@
+const mongoose = require('mongoose')
+
+
 const articleSchema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -27,3 +30,7 @@ const articleSchema = new mongoose.Schema({
 	comments: [Comment.schema],
 	likes: Number
 })
+
+const Article = mongoose.model('Article', articleSchema)
+
+module.exports = Article
