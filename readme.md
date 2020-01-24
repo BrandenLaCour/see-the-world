@@ -31,7 +31,7 @@ npm i
 
 ![alt text](https://i.imgur.com/UD4eqme.jpg)
 
-![alt text](https://i.imgur.com/jU3KFhM.jpg)
+![alt text](https://i.imgur.com/jU3KFhM.jpg?2)
 
 ## User Stories
 
