@@ -27,11 +27,11 @@ npm i
 
 ## Wireframes
 
-![alt text](https://imgur.com/tI5ear6)
+![alt text](https://i.imgur.com/tI5ear6.jpg)
 
 ![alt text](https://i.imgur.com/UD4eqme.jpg)
 
-![alt text](https://imgur.com/jU3KFhM)
+![alt text](https://i.imgur.com/jU3KFhM.jpg)
 
 ## User Stories
 
