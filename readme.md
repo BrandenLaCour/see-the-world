@@ -29,7 +29,7 @@ npm i
 
 ![alt text](https://i.imgur.com/tI5ear6.jpg?4)
 
-![alt text](https://i.imgur.com/UD4eqme.jpg?2)
+![alt text](https://i.imgur.com/KLAhrjj.jpg?1)
 
 ![alt text](https://i.imgur.com/jU3KFhM.jpg?2)
 
