@@ -160,7 +160,7 @@ Notifications when user recieves new comments or likes on photos. can click noti
 
 
 
- ## Built With
+## Built With
 
 * [GoogleMaps](https://developers.google.com/maps/documentation/embed/guide?hl=en_US#place_mode) - An Api for Maps!
 * [Cloudinary](https://cloudinary.com/blog/cloud_based_api_for_applying_effects_on_images) - An Api for Image Filters
