@@ -10,7 +10,8 @@ require('./db/db')
 //middleware
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}))
-
+const authController = require('./controllers/authController')
+app.use('/auth', authController)
 
 
 app.get('/', (req, res) => {
