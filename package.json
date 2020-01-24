@@ -1,0 +1,33 @@
+{
+  "name": "see-the-world",
+  "version": "1.0.0",
+  "description": "An app to share travel experiences with exciting photos, tips on traveling to those locations, and sharing stories.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandenLaCour/see-the-world.git"
+  },
+  "author": "Nehemias Alcantara And Branden LaCour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandenLaCour/see-the-world/issues"
+  },
+  "homepage": "https://github.com/BrandenLaCour/see-the-world#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.8.9",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.2",
+    "superagent": "^5.2.1"
+  }
+}
