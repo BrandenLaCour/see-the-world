@@ -160,11 +160,11 @@ Notifications when user recieves new comments or likes on photos. can click noti
 
 
 
-<!-- ## Built With
+ ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds -->
+* [GoogleMaps](https://developers.google.com/maps/documentation/embed/guide?hl=en_US#place_mode) - An Api for Maps!
+* [Cloudinary](https://cloudinary.com/blog/cloud_based_api_for_applying_effects_on_images) - An Api for Image Filters
+
 
 ## Authors
 [Nehemias Alcantara](https://github.com/nemiasalc56) |
