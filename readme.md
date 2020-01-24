@@ -33,6 +33,95 @@ npm i
 
 ![alt text](https://i.imgur.com/jU3KFhM.jpg?2)
 
+## Models
+-- User
+```
+const userSchema = mongoose.Schema({
+	username: {
+		type: String,
+		required: true
+	},
+	password: {
+		type: String,
+		required: true
+	},
+	firstName: {
+		type: String,
+		required: true
+	},
+	lastName: String,
+	city: {
+		type: String,
+		required: true
+	},
+	articles: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Article',
+		required: true
+	},
+	favoritePlace: {
+		type: String,
+		required: true
+	},
+	about: String,
+	image: {
+		data: Buffer,
+		contentType: String
+	}
+	})
+```
+-- Article
+```
+const articleSchema = mongoose.Schema({
+	title: {
+		type: String,
+		required: true
+	},
+	image: {
+		data: Buffer,
+		required: true
+	},
+	description: String,
+	tips: {
+		type: String,
+		required: true
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	author: {
+		type: String,
+		required: true
+	},
+	location: {
+		type: String,
+		required: true
+	},
+	comments: [Comment.schema],
+	likes: Number
+	})
+```
+
+-- Comment
+```
+const commentSchema = mongoose.Schema({
+	text: {
+		type: String,
+		required: true
+	},
+	user: {
+		type: String,
+		required: true
+		},
+	date: {
+		type: Date,
+		default: Date.now
+	}
+	})
+```
+
+
 ## User Stories
 
 The user first must register or log in.
