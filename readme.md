@@ -27,9 +27,9 @@ npm i
 
 ## Wireframes
 
-![alt text](https://i.imgur.com/tI5ear6.jpg)
+![alt text](https://i.imgur.com/tI5ear6.jpg?4)
 
-![alt text](https://i.imgur.com/UD4eqme.jpg)
+![alt text](https://i.imgur.com/UD4eqme.jpg?2)
 
 ![alt text](https://i.imgur.com/jU3KFhM.jpg?2)
 
