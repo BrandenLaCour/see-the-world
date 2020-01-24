@@ -76,11 +76,11 @@ nice to have
 notifications when user recieves new comments or likes on photos. can click notification to get to it.
 
 
-## Built With
+<!-- ## Built With
 
 * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds -->
 
 ## Authors
 [Nehemias Alcantara](https://github.com/nemiasalc56)
