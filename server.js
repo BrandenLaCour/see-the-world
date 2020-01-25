@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 		res.locals.userId = false
 		res.locals.username = false
 	}
-
+	next()
 })
 
 
