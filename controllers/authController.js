@@ -23,9 +23,8 @@ router.get('/login', (req, res) => {
 // POST
 router.post('/login', async (req, res, next) => {
 	try {
-		const foundUser = User.find({username: req.body.username})
-		console.log('this is foundUser');
-		console.log(req.body.username);
+		const foundUser = await User.findOne({username: req.body.username})
+		
 
 
 		// if the user is found check the password
@@ -35,7 +34,7 @@ router.post('/login', async (req, res, next) => {
 			if(foundUser.password === req.body.password) {
 				req.session.username = foundUser.username
 				req.session.userId = foundUser._id
-
+				req.session.message = `Welcome back ${req.session.username}`
 				res.redirect('/')
 			} else {
 				req.session.message = "Username or password is incorrect"
