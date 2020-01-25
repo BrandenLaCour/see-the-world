@@ -19,6 +19,20 @@ app.use(session({
 	saveUninitialized: false
 }))
 
+app.use((req, res, next) => {
+	if(req.session.loggedIn) {
+		res.locals.userId = req.session.userId
+		res.locals.username = req.session.username
+	} else {
+		res.locals.userId = false
+		res.locals.username = false
+	}
+
+})
+
+
+
+
 const authController = require('./controllers/authController')
 app.use('/auth', authController)
 
