@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
-
+		req.session.message = ''
 
 		res.render('filter.ejs', {
 			message: message
@@ -23,6 +23,18 @@ router.get('/filter', async (req, res, next) => {
 	}
 })
 
+
+// GET filter route
+router.get('/filter/image/', async (req, res, next) => {
+	try {
+		const foundUser = await User.findById(req.session.userId)
+
+		res.set('Content-Type', foundUser.image.contentType)
+		res.send(foundUser.image.data)
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 

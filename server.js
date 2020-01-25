@@ -21,6 +21,8 @@ app.use(session({
 
 const authController = require('./controllers/authController')
 app.use('/auth', authController)
+const articleController = require('./controllers/articleController')
+app.use('/articles', articleController)
 
 
 app.get('/', (req, res) => {
