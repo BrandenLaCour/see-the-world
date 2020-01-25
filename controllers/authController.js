@@ -73,8 +73,7 @@ router.get('/register', (req, res) => {
 // POST route
 router.post('/register', upload.single('image'), async (req, res, next) => {
 	try {
-		console.log('this is req.file');
-		console.log(req.file);
+		// new user proposal
 		const newUser = {
 			username: req.body.username,
 			password: req.body.password,
@@ -88,8 +87,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 				contentType: req.file.mimeType
 			}
 		}
-		console.log('this is the newUser: ');
-		console.log(newUser);
+		
 		// check if the username already exist
 		const foundUser = await User.find({username: newUser.username})
 		// if does redirect to register
@@ -99,14 +97,18 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 
 			res.redirect('/auth/register')
 		} else {
+			//create user
 			req.session.message = "Registration succesful " + newUser.firstName
 
-			await User.create(newUser)
-			req.session.userId = newUser._id
+			const createdUser = await User.create(newUser)
+
+			//put user into session so that we can put a filter onto it and track the user
+			req.session.userId = createdUser._id
 			req.session.username = newUser.username
 			req.session.loggedIn = true
+			res.redirect('/articles/filter')
 
-			res.redirect('/auth/filter')
+			
 		}
 
 	} catch(err) {

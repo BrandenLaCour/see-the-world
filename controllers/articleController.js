@@ -25,10 +25,10 @@ router.get('/filter', async (req, res, next) => {
 
 
 // GET filter route
-router.get('/filter/image/', async (req, res, next) => {
+router.get('/filter/image', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-
+		console.log(`the found user is ${foundUser}`);
 		res.set('Content-Type', foundUser.image.contentType)
 		res.send(foundUser.image.data)
 	} catch(err) {
