@@ -12,10 +12,12 @@
   <div class="form-group pass">
     <label for="password">Password</label>
     <input type="password" class="form-control col-10" id="password" name="password" placeholder="Password">
+    
   </div>
   <div class="form-group pass">
     <label for="firstName">First Name</label>
     <input type="text" class="form-control col-10" id="firstName" name="firstName" placeholder="First Name">
+    <small id=''></small>
   </div>
   <div class="form-group pass">
     <label for="lastName">Last Name</label>
@@ -28,6 +30,7 @@
   <div class="form-group pass">
     <label for="favoritePlace">Favorite Place</label>
     <input type="text" class="form-control col-10" id="favoritePlace" name="favoritePlace" placeholder="Favorite Place">
+    <small id=''></small>
   </div>
   <div class="form-group pass">
     <label for="about">About</label>
@@ -42,22 +45,29 @@
 </div>
 
 <script type="text/javascript">
-//  $('form').submit( () => {
+ $('form').submit( (e) => {
   
-//   const username = $('#username').val()
-//   const password = $('#password').val()
+  const inputs = $('input')
   
-//   if (!username){
-//     event.preventDefault()
-//     const requiredText = $('<small>Username Is Required</small>').css({'color': 'red'})
-//     $('.user').append(requiredText)
-//   }
-//   else if (!password) {
-//     event.preventDefault()
-//     const requiredText = $('<small>Password Is Required</small>').css({'color': 'red'})
-//     $('.pass').append(requiredText)
-//   }
-// })  
+  for(let i =0; i < inputs.length; i++){
+
+    const input = $(inputs[i])
+    if (input.val() === ''){
+      if (input.parent().children().length !== 3){
+        input.parent().append('<small>This Field Is Required</small>')
+        $('small').css({'color': 'red'})
+
+      }
+      
+      e.preventDefault()
+    }
+
+
+
+  }
+
+  
+})  
 </script>
 
 <%-include('../partials/footer.ejs')%>

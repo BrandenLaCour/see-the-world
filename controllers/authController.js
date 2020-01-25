@@ -58,12 +58,12 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 		if(foundUser.length > 0) {
 			req.session.message = "Username already exists"
 
-			res.redirect('/auth/register')
+			// res.redirect('/auth/register')
 		} else {
 			req.session.message = "Registration succesful " + newUser.firstName
 
 			await User.create(newUser)
-			res.redirect('/auth/login')
+			// res.redirect('/auth/login')
 		}
 
 	} catch(err) {
