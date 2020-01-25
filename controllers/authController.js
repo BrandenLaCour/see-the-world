@@ -20,6 +20,46 @@ router.get('/login', (req, res) => {
 	})	
 })
 
+// POST
+router.post('/login', async (req, res, next) => {
+	try {
+		const foundUser = User.find({username: req.body.username})
+		console.log('this is foundUser');
+		console.log(req.body.username);
+
+
+		// if the user is found check the password
+		// if is not found redirect to login
+		if(foundUser) {
+			
+			if(foundUser.password === req.body.password) {
+				req.session.username = foundUser.username
+				req.session.userId = foundUser._id
+
+				res.redirect('/')
+			} else {
+				req.session.message = "Username or password is incorrect"
+
+				res.redirect('/auth/login')
+			}
+
+		} else {
+			req.session.message = "Username or password is incorrect"
+
+			res.redirect('/auth/login')
+		}
+
+		//if found check password
+		// if pw is correct add username to req.session.username
+		// redirect to home page redirect('/')
+
+
+
+	} catch(err) {
+		next(err)
+	}
+})
+
 
 // GET register route
 router.get('/register', (req, res) => {
@@ -58,12 +98,12 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 		if(foundUser.length > 0) {
 			req.session.message = "Username already exists"
 
-			// res.redirect('/auth/register')
+			res.redirect('/auth/register')
 		} else {
 			req.session.message = "Registration succesful " + newUser.firstName
 
 			await User.create(newUser)
-			// res.redirect('/auth/login')
+			res.redirect('/auth/login')
 		}
 
 	} catch(err) {
