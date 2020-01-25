@@ -9,7 +9,19 @@ router.get('/', (req, res, next) => {
 	res.render('article/index.ejs')
 })
 
+// GET filter route
+router.get('/filter', async (req, res, next) => {
+	try {
+		const message = req.session.message
 
+
+		res.render('filter.ejs', {
+			message: message
+		})
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 
