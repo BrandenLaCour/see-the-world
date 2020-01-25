@@ -10,6 +10,12 @@ router.get('/login', (req, res) => {
 })
 
 
+// GET register route
+router.get('/register', (req, res) => {
+	res.render('auth/register.ejs')	
+})
+
+
 
 
 
