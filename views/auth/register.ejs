@@ -4,7 +4,7 @@
 <%=message%>
 
 <div class="card" style="width: 30rem;">
-<form method='POST' action="/auth/register">
+<form method='POST' action="/auth/register" enctype="multipart/form-data">
   <div class="form-group user">
     <label for="username">Username</label>
     <input type="text" class="form-control col-10" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email">
