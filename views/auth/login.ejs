@@ -6,32 +6,34 @@
   <div class="form-group user">
     <label for="exampleInputEmail1">Username</label>
     <input type="text" class="form-control col-10" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="userWarning"></small>
   </div>
   <div class="form-group pass">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control col-10" id="password" name="password" placeholder="Password">
+    <small id='passWarning'></small>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
 
 <script type="text/javascript">
-//  $('form').submit( () => {
+ $('form').submit( () => {
   
-//   const username = $('#username').val()
-//   const password = $('#password').val()
-  
-//   if (!username){
-//     event.preventDefault()
-//     const requiredText = $('<small>Username Is Required</small>').css({'color': 'red'})
-//     $('.user').append(requiredText)
-//   }
-//   else if (!password) {
-//     event.preventDefault()
-//     const requiredText = $('<small>Password Is Required</small>').css({'color': 'red'})
-//     $('.pass').append(requiredText)
-//   }
-// })  
+  const username = $('#username').val()
+  const password = $('#password').val()
+  console.log('ran');
+  if (!username){
+    event.preventDefault()
+   $('#userWarning').text('Username Required').css({'color': 'red'})
+   
+  }
+  else if (!password) {
+    event.preventDefault()
+    $('#passWarning').text('Password Required').css({'color': 'red'})
+   
+  }
+})  
 </script>
 
 <%-include('../partials/footer.ejs')%>
