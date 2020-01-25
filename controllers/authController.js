@@ -104,6 +104,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 			await User.create(newUser)
 			req.session.userId = newUser._id
 			req.session.username = newUser.username
+			req.session.loggedIn = true
 
 			res.redirect('/auth/filter')
 		}
