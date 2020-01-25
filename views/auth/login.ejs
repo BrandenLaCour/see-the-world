@@ -8,33 +8,40 @@
   <div class="form-group user">
     <label for="exampleInputEmail1">Username</label>
     <input type="text" class="form-control col-10" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id='userVal'></small>
+    
   </div>
   <div class="form-group pass">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control col-10" id="password" name="password" placeholder="Password">
-    <small id='passVal'></small>
+    
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
 
 <script type="text/javascript">
- $('form').submit( () => {
-
-  const username = $('#username').val()
-  const password = $('#password').val()
+ $('form').submit( (e) => {
   
-  if (!username){
-    event.preventDefault()
-    $('#userVal').text('Username Required').css({'color': 'red'})
-   
+  const inputs = $('input')
+  
+  for(let i =0; i < inputs.length; i++){
+
+    const input = $(inputs[i])
+    if (input.val() === ''){
+      if (input.parent().children().length !== 3){
+        input.parent().append('<small class="required">This Field Is Required</small>')
+        
+
+      }
+      
+      e.preventDefault()
+    }
+
+
+
   }
-  else if (!password) {
-    event.preventDefault()
-    $('#passVal').text('Password Required').css({'color': 'red'})
- 
-  }
+
+  
 })  
 </script>
 

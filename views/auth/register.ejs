@@ -54,8 +54,8 @@
     const input = $(inputs[i])
     if (input.val() === ''){
       if (input.parent().children().length !== 3){
-        input.parent().append('<small>This Field Is Required</small>')
-        $('small').css({'color': 'red'})
+        input.parent().append('<small class="required">This Field Is Required</small>')
+        
 
       }
       
