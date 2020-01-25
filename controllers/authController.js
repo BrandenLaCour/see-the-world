@@ -34,11 +34,14 @@ router.get('/register', (req, res) => {
 // POST route
 router.post('/register', upload.single('image'), async (req, res, next) => {
 	try {
+		console.log('this is req.file');
+		console.log(req.file);
 		const newUser = {
 			username: req.body.username,
 			password: req.body.password,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
+			city: req.body.city,
 			about: req.body.about,
 			favoritePlace: req.body.favoritePlace,
 			image: {
@@ -46,19 +49,22 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 				contentType: req.file.mimeType
 			}
 		}
+		console.log('this is the newUser: ');
+		console.log(newUser);
 		// check if the username already exist
 		const foundUser = await User.find({username: newUser.username})
-		if(foundUser) {
-			req.session.message = "username already exists"
-
-			res.redirect('/auth/register')
-		}
-
 		// if does redirect to register
 		// inform the user
+		if(foundUser.length > 0) {
+			req.session.message = "Username already exists"
 
-		await User.create(newUser)
-		
+			res.redirect('/auth/register')
+		} else {
+			req.session.message = "Registration succesful " + newUser.firstName
+
+			await User.create(newUser)
+			res.redirect('/login')
+		}
 
 	} catch(err) {
 		next(err)
