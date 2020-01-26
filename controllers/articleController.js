@@ -53,13 +53,25 @@ router.get('/filter', async (req, res, next) => {
 })
 
 
-// GET filter route
+// GET image for filter
 router.get('/filter/image', async (req, res, next) => {
 	try {
-		const foundUser = await User.findById(req.session.userId)
-		console.log(`the found user is ${foundUser}`);
-		res.set('Content-Type', foundUser.image.contentType)
-		res.send(foundUser.image.data)
+		if (req.session.filterState === "register"){
+			const foundUser = await User.findById(req.session.newFilterId)
+			req.session.filterState = ''
+			req.session.newFilterId = ''
+			res.set('Content-Type', foundUser.image.contentType)
+			res.send(foundUser.image.data)
+		}
+		else {
+			const foundArticle = await Article.findById(req.session.newFilterId)
+			req.session.filterState = ''
+			req.session.newFilterId = ''
+			res.set('Content-Type', foundArticle.image.contentType)
+			res.send(foundArticle.image.data)
+
+		}
+		
 	} catch(err) {
 		next(err)
 	}
@@ -96,8 +108,8 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			author: req.session.userId
 		}
 		const createdArticle = await Article.create(newArticle)
-
-		console.log(newArticle);
+		req.session.newFilterId = createdArticle._id
+		req.session.filterState = 'article'
 		res.redirect('/articles/filter')
 	} catch(err) {
 		next(err)

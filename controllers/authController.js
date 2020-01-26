@@ -91,7 +91,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 		// check if the username already exist
 		const foundUser = await User.find({username: newUser.username})
 		// if does redirect to register
-		// inform the user
+		// inform the usergit pum
 		if(foundUser.length > 0) {
 			req.session.message = "Username already exists"
 
@@ -99,13 +99,14 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 		} else {
 			//create user
 			req.session.message = "Registration succesful " + newUser.firstName
-
 			const createdUser = await User.create(newUser)
 
 			//put user into session so that we can put a filter onto it and track the user
 			req.session.userId = createdUser._id
 			req.session.username = newUser.username
 			req.session.loggedIn = true
+			req.session.newFilterId = createdUser._id
+			req.session.filterState = 'register'
 			res.redirect('/articles/filter')
 
 			
