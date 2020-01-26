@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 		console.log(foundArticles);
 
 
-		res.render('article/index.ejs', {
+		res.render('articles/index.ejs', {
 			articles: foundArticles
 		})
 	} catch(err) {
@@ -84,7 +84,7 @@ router.get('/new', async (req, res, next) => {
 		const message = req.session.message
 		req.session.message = ''
 
-		res.render('article/new.ejs', {
+		res.render('articles/new.ejs', {
 			message: message
 		})
 	} catch(err) {
