@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Comment = require('../models/comment')
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage})
+const Article = require('../models/article')
 
 
 // GET article route
@@ -51,6 +55,29 @@ router.get('/new', async (req, res, next) => {
 	}
 })
 
+
+//POST create route:
+router.post('/', upload.single('image'), async (req, res, next) => {
+	try {
+		const newArticle = {
+			title: req.body.title,
+			image: {
+				data: req.file.buffer,
+				contentType: req.file.mimeType
+			},
+			description: req.body.description,
+			tips: req.body.tips,
+			location: req.body. location,
+			author: req.session.userId
+		}
+		const createdArticle = await Article.create(newArticle)
+
+		console.log(newArticle);
+		res.redirect('/articles/filter')
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 

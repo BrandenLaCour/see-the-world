@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Comment = require('./comment')
 
 
 const articleSchema = new mongoose.Schema({
@@ -8,7 +9,7 @@ const articleSchema = new mongoose.Schema({
 	},
 	image: {
 		data: Buffer,
-		required: true
+		contentType: String
 	},
 	description: String,
 	tips: {
@@ -29,10 +30,10 @@ const articleSchema = new mongoose.Schema({
 		required: true
 	},
 	comments: [Comment.schema],
-	likes: [
+	likes: [{
 		type: mongoose.Schema.Types.ObjectId,
-		 ref: "User"
-	] // Article.find().where( user $in likes ) if we want to search all the users likes
+		ref: "User"
+	}] // Article.find().where( user $in likes ) if we want to search all the users likes
 })
 
 const Article = mongoose.model('Article', articleSchema)
