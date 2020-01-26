@@ -5,9 +5,18 @@
 
 <% for(let i = 0; i < articles.length; i++) {%>
 				
-	<a href="/articles/<%=articles[i].id%>"><%=articles[i].title%></a>
-	<br>
-	<img src="/articles/image/<%=articles[i].id%>"> 
+<div class="card mt-10" style="width: 35rem;">
+	<a href="/articles/<%=articles[i].id%>" >
+	<img src="/articles/image/<%=articles[i].id%>" class="card-img-top" alt="..."> 
+		
+	</a>
+  <div class="card-body">
+  	<p><%=articles[i].title%></p> 
+  	<p><%=articles[i].date.toLocaleString()%></p>
+  </div>
+</div>
+	
 <%}%>
-<br>
+
+
 <%- include('../partials/footer.ejs')%>

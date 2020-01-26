@@ -8,11 +8,12 @@ const upload = multer({storage: storage})
 const Article = require('../models/article')
 
 
-// GET article route
+// GET article index route
 router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({})
 		console.log(foundArticles);
+
 
 		res.render('article/index.ejs', {
 			articles: foundArticles
@@ -21,8 +22,21 @@ router.get('/', async (req, res, next) => {
 		next(err)
 	}
 
-
 })
+
+
+// article index GET route
+router.get('/image/:id', async (req, res, next) => {
+	try {
+		const article = await Article.findById(req.params.id)
+		res.set('Content-Type', article.image.contentType)
+		res.send(article.image.data)
+	} catch(err) {
+		next(err)
+	}
+})
+
+
 
 // GET filter route
 router.get('/filter', async (req, res, next) => {
