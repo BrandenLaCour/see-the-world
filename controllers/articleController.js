@@ -9,8 +9,19 @@ const Article = require('../models/article')
 
 
 // GET article route
-router.get('/', (req, res, next) => {
-	res.render('article/index.ejs')
+router.get('/', async (req, res, next) => {
+	try {
+		const foundArticles = await Article.find({})
+		console.log(foundArticles);
+
+		res.render('article/index.ejs', {
+			articles: foundArticles
+		})
+	} catch(err) {
+		next(err)
+	}
+
+
 })
 
 // GET filter route

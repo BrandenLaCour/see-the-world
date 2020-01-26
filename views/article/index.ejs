@@ -1,0 +1,13 @@
+<%- include('../partials/header.ejs')%>
+
+
+<h1>See All the Photos</h1>
+
+<% for(let i = 0; i < articles.length; i++) {%>
+				
+	<a href="/articles/<%=articles[i].id%>"><%=articles[i].title%></a>
+	<br>
+	<img src="/articles/image/<%=articles[i].id%>"> 
+<%}%>
+<br>
+<%- include('../partials/footer.ejs')%>
