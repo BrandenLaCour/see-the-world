@@ -23,10 +23,7 @@ const userSchema = new mongoose.Schema({
 		required: true
 	},
 	about: String,
-	image: {
-		data: Buffer,
-		contentType: String
-	}
+	imageId: String 
 })
 
 

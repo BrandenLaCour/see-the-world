@@ -3,9 +3,8 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
 const multer = require('multer')
-const storage = multer.memoryStorage()
-const upload = multer({storage: storage})
-
+const upload = multer({ dest: 'uploads/' })
+const cloudinary = require('cloudinary').v2
 
 
 
@@ -82,10 +81,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 			city: req.body.city,
 			about: req.body.about,
 			favoritePlace: req.body.favoritePlace,
-			image: {
-				data: req.file.buffer,
-				contentType: req.file.mimeType
-			}
+			imageId: ''
 		}
 		
 		// check if the username already exist
@@ -98,6 +94,8 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 			res.redirect('/auth/register')
 		} else {
 			//create user
+			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) { if (error) next(error) });
+			newUser.imageId = uploadResult.public_id
 			req.session.message = "Registration succesful " + newUser.firstName
 			const createdUser = await User.create(newUser)
 

@@ -7,9 +7,9 @@ const articleSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	image: {
-		data: Buffer,
-		contentType: String
+	imageId: {
+		type: String,
+		required: true
 	},
 	description: String,
 	tips: {

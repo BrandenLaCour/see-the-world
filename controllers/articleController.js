@@ -3,10 +3,9 @@ const router = express.Router()
 const User = require('../models/user')
 const Comment = require('../models/comment')
 const multer = require('multer')
-const storage = multer.memoryStorage()
-const upload = multer({storage: storage})
+var upload = multer({ dest: 'uploads/' })
 const Article = require('../models/article')
-
+const cloudinary = require('cloudinary').v2
 
 // GET article index route
 router.get('/', async (req, res, next) => {
@@ -43,10 +42,33 @@ router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
 		req.session.message = ''
+		
 
-		res.render('filter.ejs', {
-			message: message
+		if (req.session.filterState === "register"){
+			const foundUser = await User.findById(req.session.newFilterId)
+			req.session.filterState = ''
+			req.session.newFilterId = ''
+			
+			const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
+			res.render('filter.ejs', {
+			message: message,
+			imageUrl: userPhotoUrl
 		})
+		}
+		else {
+			const foundArticle = await Article.findById(req.session.newFilterId)
+			req.session.filterState = ''
+			req.session.newFilterId = ''
+			
+			const articlePhotoUrl = cloudinary.url(`${foundArticle.imageId}.jpg`)
+			res.render('filter.ejs', {
+			message: message,
+			imageUrl: articlePhotoUrl
+		})
+
+		}
+		
+		
 	} catch(err) {
 		next(err)
 	}
@@ -60,15 +82,15 @@ router.get('/filter/image', async (req, res, next) => {
 			const foundUser = await User.findById(req.session.newFilterId)
 			req.session.filterState = ''
 			req.session.newFilterId = ''
-			res.set('Content-Type', foundUser.image.contentType)
-			res.send(foundUser.image.data)
+			
+			res.send(cloudinary.url(foundUser.imageId))
 		}
 		else {
 			const foundArticle = await Article.findById(req.session.newFilterId)
 			req.session.filterState = ''
 			req.session.newFilterId = ''
-			res.set('Content-Type', foundArticle.image.contentType)
-			res.send(foundArticle.image.data)
+			
+			res.send(cloudinary.url(foundArticle.imageId))
 
 		}
 		
@@ -96,12 +118,11 @@ router.get('/new', async (req, res, next) => {
 //POST create route:
 router.post('/', upload.single('image'), async (req, res, next) => {
 	try {
+		
+		const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) { if (error) next(error) });
 		const newArticle = {
 			title: req.body.title,
-			image: {
-				data: req.file.buffer,
-				contentType: req.file.mimeType
-			},
+			imageId: uploadResult.public_id,
 			description: req.body.description,
 			tips: req.body.tips,
 			location: req.body. location,
