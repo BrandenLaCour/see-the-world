@@ -37,6 +37,20 @@ router.get('/filter/image', async (req, res, next) => {
 })
 
 
+// GET new route
+router.get('/new', async (req, res, next) => {
+	try {
+		const message = req.session.message
+		req.session.message = ''
+
+		res.render('article/new.ejs', {
+			message: message
+		})
+	} catch(err) {
+		next(err)
+	}
+})
+
 
 
 
