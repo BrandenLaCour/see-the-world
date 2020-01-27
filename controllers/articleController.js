@@ -170,7 +170,7 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
-		const foundArticle = await Article.findById(req.params.id)
+		const foundArticle = await Article.findById(req.params.id).populate('author')
 
 		const userId = req.session.userId
 		console.log(foundArticle.author);
