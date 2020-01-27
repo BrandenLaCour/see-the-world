@@ -16,11 +16,6 @@ router.get('/', async (req, res, next) => {
 			photosUrl.push(cloudinary.url(`${foundArticles[i].imageId}.jpg`))
 
 		}
-		console.log('photosUrl');
-		console.log(photosUrl);
-
-		console.log('foundArticles');
-		console.log(foundArticles[0].imageId);
 
 		res.render('articles/index.ejs', {
 			photos: photosUrl,
@@ -122,6 +117,22 @@ router.get('/new', async (req, res, next) => {
 		next(err)
 	}
 })
+
+// GET article show page
+router.get('/:id', async (req, res, next) => {
+	try {
+
+
+		res.render('articles/show.ejs')
+	} catch(err) {
+		next(err)
+	}
+})
+
+
+
+
+
 
 
 //POST create route:
