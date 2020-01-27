@@ -108,7 +108,9 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 // Destroy profile route
 router.delete('/profile/:id', async (req, res, next) => {
 	try {
+		const foundUser = await User.findById(req.params.id)
 		const user = await User.findByIdAndRemove(req.session.userId)
+		await cloudinary.uploader.destroy(foundUser.imageId, (result) => { console.log(result)})
 		await req.session.destroy()
 
 		res.redirect('/auth/login')
@@ -118,7 +120,7 @@ router.delete('/profile/:id', async (req, res, next) => {
 })
 
 
-
+		
 
 
 
