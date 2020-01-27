@@ -85,14 +85,14 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 			const user = await User.findById(req.session.userId)
 			newUser.imageId = user.imageId
 
-		} 
-		// if upload new picture
-		const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
-			if(error) next(error)
-		});
-		newUser.imageId = uploadResult.public_id
+		} else {
+			// if upload new picture
+			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
+				if(error) next(error)
+			});
+			newUser.imageId = uploadResult.public_id
 
-
+		}
 		await User.findByIdAndUpdate(req.session.userId, newUser)
 		setTimeout(()=>{
 			res.redirect('/users/profile')
