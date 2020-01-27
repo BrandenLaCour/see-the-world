@@ -47,3 +47,7 @@ body {
 #comments-text {
 	width: 38vw;
 }
+
+li {
+	list-style: none;
+}

@@ -47,26 +47,44 @@
     </div>
       </div>
 </form>
-    <p class="card-title"><%=article.comments%></p>
+   
     
   </div>
+   
+          <%article.comments.forEach( comment => {%>
+          <div class="comments-container">
+      <div class="card">
+        <div class="body" style='width: 25rem'>
+          <!-- add styling with bootstrap rows/cols -->
+          <ul>
+            <li><%=comment.text%></li>
+            <li><%=comment.date.toLocaleString()%></li>
+            <!-- we need to deep populate to get the comment author -->
+          </ul>
+          </div>  
+
+      </div>
+
+    </div>
+
+          <%})%>
+
+        
 
 
 <script type="text/javascript">
-  $('form').submit((e)=> {
+   $('form').submit( (e) => {
+  
+  const textArea = $('#comments-text').val()
+ 
+  if (textArea === ''){
 
-    const textArea = $('#comments-text').text()
-    if (!textArea ){
-      console.log(textArea.parent().children().length);
-      if (textArea.parent().children().length !== 2){
-        textArea.parent().append('<small class="required">This Field Is Required</small>')
-        
-      }
-      e.preventDefault()
-    }
-      
-  })
+    e.preventDefault()
+  }
 
+
+  
+})  
 
 </script>
 
