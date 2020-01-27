@@ -23,8 +23,10 @@ app.use((req, res, next) => {
 	if(req.session.loggedIn) {
 		res.locals.userId = req.session.userId
 		res.locals.username = req.session.username
+		res.locals.loggedIn = req.session.loggedIn
 	} else {
 		res.locals.userId = false
+		res.locals.loggedIn = false
 		res.locals.username = false
 	}
 	next()
