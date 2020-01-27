@@ -34,7 +34,7 @@ router.post('/login', async (req, res, next) => {
 				req.session.username = foundUser.username
 				req.session.userId = foundUser._id
 				req.session.message = `Welcome back ${req.session.username}`
-				res.redirect('/')
+				res.redirect('/articles')
 			} else {
 				req.session.message = "Username or password is incorrect"
 

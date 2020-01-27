@@ -37,6 +37,8 @@ const authController = require('./controllers/authController')
 app.use('/auth', authController)
 const articleController = require('./controllers/articleController')
 app.use('/articles', articleController)
+const userController = require('./controllers/userController')
+app.use('/profile', userController)
 
 
 app.get('/', (req, res) => {
