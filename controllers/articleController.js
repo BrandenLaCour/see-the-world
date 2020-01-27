@@ -117,6 +117,19 @@ router.get('/new', async (req, res, next) => {
 	}
 })
 
+router.get('/:id/edit', async (req, res, next) => {
+
+	try {
+		const foundArticle = await Article.findById(req.params.id)
+		res.render('articles/edit.ejs', {article: foundArticle})
+	}
+	catch(err){
+		next(err)
+
+	}
+	
+})
+
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
@@ -126,7 +139,7 @@ router.get('/:id', async (req, res, next) => {
 		const imageUrl = await cloudinary.url(`${foundArticle.imageId}.jpg`)
 		res.render('articles/show.ejs', {
 			imageUrl: imageUrl,
-			image: foundArticle
+			article: foundArticle
 		})
 	} catch(err) {
 		next(err)
@@ -135,15 +148,15 @@ router.get('/:id', async (req, res, next) => {
 
 
 // GET article show page
-router.get('/:id/image', async (req, res, next) => {
-	try {
-		const foundArticle = await Article.findById(req.params.id)
+// router.get('/:id/image', async (req, res, next) => {
+// 	try {
+// 		const foundArticle = await Article.findById(req.params.id)
 
-		res.send(cloudinary.url(foundArticle.imageId))
-	} catch(err) {
-		next(err)
-	}
-})
+// 		res.send(cloudinary.url(foundArticle.imageId))
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
 
 
 
