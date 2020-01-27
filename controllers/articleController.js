@@ -136,7 +136,14 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 
 	try {
 		const articleEdited = req.body
-		if (req.file.path){
+
+		//if they don't upload a picture, we will query the database and get the old picture
+		if(!req.file) {
+			const foundArticle = await Article.findById(req.params.id)
+			articleEdited.imageId = foundArticle.imageId
+
+		} else {
+			// if upload new picture, get that picture add it to db, and cloudinary
 			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
 				if(error) next(error)
 			});
@@ -144,7 +151,12 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 
 		}
 
-		const updatedArticle = await Article.update({_id: req.params.id})
+		await Article.findByIdAndUpdate(req.params.id, articleEdited)
+		setTimeout(()=>{
+			res.redirect(`/articles/${req.params.id}`)
+
+		}, 100)
+
 		
 	}
 	catch(err){
