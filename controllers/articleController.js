@@ -117,6 +117,7 @@ router.get('/new', async (req, res, next) => {
 	}
 })
 
+//Edit route for Articles
 router.get('/:id/edit', async (req, res, next) => {
 
 	try {
@@ -129,6 +130,30 @@ router.get('/:id/edit', async (req, res, next) => {
 	}
 	
 })
+
+//Update route for Articles
+router.put('/:id', upload.single('image'), async (req, res, next) => {
+
+	try {
+		const articleEdited = req.body
+		if (req.file.path){
+			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
+				if(error) next(error)
+			});
+			articleEdited.imageId = uploadResult.public_id
+
+		}
+
+		const updatedArticle = await Article.update({_id: req.params.id})
+		
+	}
+	catch(err){
+		next(err)
+
+	}
+	
+})
+
 
 // GET article show page
 router.get('/:id', async (req, res, next) => {
