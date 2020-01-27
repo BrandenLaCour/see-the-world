@@ -61,6 +61,20 @@ router.post('/login', async (req, res, next) => {
 	}
 })
 
+// GET logout route
+router.get('/logout', async (req, res, next) => {
+	try {
+		await req.session.destroy()
+
+		res.redirect('/auth/login')
+	} catch(err) {
+		next(err)
+	}
+})
+
+
+
+
 
 // GET register route
 router.get('/register', (req, res) => {
