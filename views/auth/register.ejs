@@ -3,7 +3,8 @@
 
 <h3><%=message%></h3>
 <div class="content-container">
-  <div class="card" style="width: 30rem;">
+  <div class="card " style="width: 30rem;">
+    <div class ="card-body">
 <form method='POST' action="/auth/register" enctype="multipart/form-data">
   <div class="form-group user">
     <label for="username">Username</label>
@@ -40,8 +41,14 @@
     <label for="image">Photo</label>
     <input type="file" class="form-control col-10" id="image" name="image" />
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  
 </form>
+</div>
 </div>
 
 </div>
