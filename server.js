@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 
 	req.session.message = ''
 
-	res.render('home.ejs', {
+	res.render('auth/login.ejs', {
 		message: message
 	})
 })
