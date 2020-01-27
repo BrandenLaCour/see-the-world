@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs')%>
+
+
+<div id="profile-container">
+	<div class="card mt-10" style="width: 37%;" >
+	<img src="<%=imageUrl%>" style='height: 50vh;'>
+	<div class="card-body">
+		<div class="row justify-content-center ">
+	
+	<h3 class="card-title col-5"><%=user.firstName%> <%=user.lastName%></h3>
+	</div>
+	<div class=" row justify-content-center">
+		<h5 class="card-title col-3"><%=user.city%></h5>
+	</div>
+	
+	<div class="row">
+		<p class="card-title"><strong class='mr-2'>About:</strong> <%=user.about%></p>
+	</div>
+	<div class="row">
+		<p class="card-title"><strong class='mr-2'>Favorite Place:</strong> <%=user.favoritePlace%></p>
+	</div>
+	<div class="row justify-content-around">
+		
+		<a href="#" class="btn btn-primary col-3">My Articles</a>
+		<a href="#" class="btn btn-primary col-3">Edit Profile</a>
+		<button class='btn btn-danger col-3'>Delete Profile</button>
+	</div>
+</div>
+
+
+	</div>
+
+	
+
+</div>
+
+
+
+<%- include('../partials/footer.ejs')%>
