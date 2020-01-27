@@ -15,6 +15,7 @@ body {
 
 .article-container {
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 
@@ -25,3 +26,4 @@ body {
 .title {
 	text-align: center
 }
+
