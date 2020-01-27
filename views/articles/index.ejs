@@ -14,7 +14,8 @@
 	</a>
   <div class="card-body">
   	<p><%=articles[i].title%></p>
-  	<p><%=articles[i].date.toLocaleString()%></p>
+  	<small class='signature'>By: <%=articles[i].author ? `${articles[i].author.firstName} ${articles[i].author.lastName}` : 'Author Deleted' %></small>
+  	<small><%=articles[i].date.toLocaleString()%></small>
   </div>
 </div>
 	

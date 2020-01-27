@@ -10,8 +10,8 @@
     <h5 class="card-title"><%=article.location%></h5>
     <p class="card-title"><%=article.description%></p>
     <p class="card-title"><%=article.tips%></p>
-     <p class="card-title">By: <%=article.author.firstName%></p>
-    <div class="row justify-content-between">
+     <p class="card-title">By: <%=article.author ? `${article.author.firstName} ${article.author.lastName}` : 'Author Deleted' %></p>
+    <div class="row justify-content-between"> 
       <% if (foundAuthor) { -%>
       <a href="/articles/<%=article._id%>/edit" class="btn btn-primary col-6 col-xl-3 col-lg-4">Edit</a>
       <form class='col-6 col-xl-3 col-lg-4' method="POST" action="/articles/<%=article._id%>?_method=DELETE">

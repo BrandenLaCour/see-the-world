@@ -11,7 +11,7 @@ const fs = require('fs')
 // GET article index route
 router.get('/', async (req, res, next) => {
 	try {
-		const foundArticles = await Article.find({})
+		const foundArticles = await Article.find({}).populate('author')
 		const message = req.session.message
 		req.session.message = ''
 
@@ -24,18 +24,6 @@ router.get('/', async (req, res, next) => {
 		next(err)
 	}
 
-})
-
-
-// article index GET route
-router.get('/image/:id', async (req, res, next) => {
-	try {
-		const article = await Article.findById(req.params.id)
-
-		res.send(cloudinary.url(article.imageId))		
-	} catch(err) {
-		next(err)
-	}
 })
 
 
@@ -171,10 +159,7 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundArticle = await Article.findById(req.params.id).populate('author')
-
 		const userId = req.session.userId
-		console.log(foundArticle.author);
-		console.log(userId);
 
 		let foundAuthor = false
 		// is if this is the owner of the article
@@ -211,7 +196,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
-
+		console.log(createdArticle);
 		//delete upload local
 		fs.access(filePath, error => {
 
@@ -237,6 +222,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 	}
 })
 
+//delete route
 
 router.delete('/:id', async (req, res, next) => {
 	try {

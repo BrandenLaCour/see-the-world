@@ -11,7 +11,7 @@ body {
 .content-container {
 	display: flex;
 	justify-content: center
-	
+
 }
 
 .article-container {
@@ -31,4 +31,8 @@ body {
 
 .prof {
 	width: 30px
+}
+
+.signature {
+	margin-right: 30px;
 }
