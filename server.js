@@ -24,10 +24,12 @@ app.use((req, res, next) => {
 		res.locals.userId = req.session.userId
 		res.locals.username = req.session.username
 		res.locals.loggedIn = req.session.loggedIn
+		res.locals.message = req.session.message
 	} else {
 		res.locals.userId = false
 		res.locals.loggedIn = false
 		res.locals.username = false
+		res.locals.message = ''
 	}
 	next()
 })

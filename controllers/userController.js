@@ -9,14 +9,13 @@ const bcrypt = require('bcrypt')
 
 
 
-// GET profile route
-router.get('/profile', async (req, res, next) => {
+// GET of profile of current user
+router.get('/profile/', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-
 		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
 
-		res.render('user/show.ejs', {
+		res.render('users/showProfile.ejs', {
 			user: foundUser,
 			imageUrl: userPhotoUrl
 		})
@@ -24,6 +23,23 @@ router.get('/profile', async (req, res, next) => {
 		next(err)
 	}
 })
+
+//Get show page of user clicked
+router.get('/:id', async (req, res, next) => {
+	try {
+		const foundUser = await User.findById(req.params.id)
+		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
+
+		res.render('users/show.ejs', {
+			user: foundUser,
+			imageUrl: userPhotoUrl
+		})
+		
+	}
+	catch(err){
+		next(err)
+	}
+	})
  
 // GET profile image route
 // router.get('/profile/image', async (req, res, next) => {
@@ -35,6 +51,17 @@ router.get('/profile', async (req, res, next) => {
 // 		next(err)
 // 	}
 // })
+
+//Get all users (index)
+router.get('/', async (req, res, next) => {
+	try {
+		const foundUsers = await User.find({})
+		res.render('users/index.ejs', {users: foundUsers})
+	}
+	catch(err){
+		next(err)
+	}
+	})
 
 
 
@@ -49,7 +76,7 @@ router.get('/profile/:id/edit', async (req, res, next) => {
 
 		const profileToEdit = await User.findById(req.session.userId)
 
-		res.render('user/edit.ejs', {
+		res.render('users/edit.ejs', {
 			isLoggedIn: isLoggedIn,
 			user: profileToEdit,
 			message: message

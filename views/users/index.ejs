@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs')%>
+
+
+<h1 class='title'>All Users</h1>
+<h3  class='title'><%=message%></h3>
+<div class="article-container">
+	
+<% for(let i = 0; i < users.length; i++) {%>
+				
+<div class="card article" style="width: 17rem;">
+ 
+  	<button class='btn btn-primary'>
+  		<a style="color: white; text-decoration: none" href="/users/<%=users[i]._id%>">
+  	<h3><%=users[i].firstName%></h3>
+  	<h5><%=users[i].city%></h5>
+  	<small><%=users[i].username%></small>
+  	</a>
+  	</button>
+  
+</div>
+	
+<%}%>
+
+
+</div>
+
+
+<%- include('../partials/footer.ejs')%>
