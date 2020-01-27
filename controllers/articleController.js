@@ -195,21 +195,6 @@ router.get('/:id', async (req, res, next) => {
 })
 
 
-// GET article show page
-// router.get('/:id/image', async (req, res, next) => {
-// 	try {
-// 		const foundArticle = await Article.findById(req.params.id)
-
-// 		res.send(cloudinary.url(foundArticle.imageId))
-// 	} catch(err) {
-// 		next(err)
-// 	}
-// })
-
-
-
-
-
 
 //POST create route:
 router.post('/', upload.single('image'), async (req, res, next) => {
@@ -253,7 +238,19 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 })
 
 
+router.delete('/:id', async (req, res, next) => {
+	try {
+		const foundArticle = await Article.findById(req.params.id)
+		const deletedArticle = await Article.findByIdAndRemove(req.params.id)
+		await cloudinary.uploader.destroy(foundArticle.imageId, (result) => { console.log(result)})
+		res.redirect('/articles')
+	}
+	catch(err){
+		next(err)
 
+	}
+
+	})
 
 
 
