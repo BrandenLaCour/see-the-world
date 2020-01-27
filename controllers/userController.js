@@ -39,6 +39,26 @@ router.get('/image', async (req, res, next) => {
 
 
 
+// GET edit route
+router.get('/:id/edit', async (req, res, next) => {
+	try {
+		// check if the user is logged in
+		// if so, send them to the edit page
+		const isLoggedIn = req.session.loggedIn
+
+		const profileToEdit = await User.findById(req.session.userId)
+		console.log(profileToEdit);
+
+		res.render('user/edit.ejs')
+
+	} catch(err) {
+		next(err)
+	}
+})
+
+
+
+
 
 
 

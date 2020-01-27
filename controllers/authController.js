@@ -36,6 +36,7 @@ router.post('/login', async (req, res, next) => {
 			if(loginInfoIsValid) {
 				req.session.username = foundUser.username
 				req.session.userId = foundUser._id
+				req.session.loggedIn = true
 				req.session.message = `Welcome back ${req.session.username}`
 				res.redirect('/articles')
 			} else {
