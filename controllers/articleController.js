@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../models/user')
 const Comment = require('../models/comment')
 const multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/' })
 const Article = require('../models/article')
 const cloudinary = require('cloudinary').v2
 
@@ -11,10 +11,19 @@ const cloudinary = require('cloudinary').v2
 router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({})
-		console.log(foundArticles);
+		let photosUrl = []
+		for(let i = 0; i < foundArticles.length; i++) {
+			photosUrl.push(cloudinary.url(`${foundArticles[i].imageId}.jpg`))
 
+		}
+		console.log('photosUrl');
+		console.log(photosUrl);
+
+		console.log('foundArticles');
+		console.log(foundArticles[0].imageId);
 
 		res.render('articles/index.ejs', {
+			photos: photosUrl,
 			articles: foundArticles
 		})
 	} catch(err) {
@@ -28,8 +37,8 @@ router.get('/', async (req, res, next) => {
 router.get('/image/:id', async (req, res, next) => {
 	try {
 		const article = await Article.findById(req.params.id)
-		res.set('Content-Type', article.image.contentType)
-		res.send(article.image.data)
+
+		res.send(cloudinary.url(article.imageId))		
 	} catch(err) {
 		next(err)
 	}
