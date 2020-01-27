@@ -82,11 +82,13 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 		}
 		// if doesnt upload a new picture
 		if(!req.file) {
+			// keep the old picture on the profile
 			const user = await User.findById(req.session.userId)
 			newUser.imageId = user.imageId
 
 		} else {
 			// if upload new picture
+			// update the picture on the profile
 			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
 				if(error) next(error)
 			});
