@@ -5,6 +5,7 @@ const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 const upload = multer({ dest: "uploads/"})
 const bcrypt = require('bcrypt')
+const Article = require('../models/article')
 
 
 
@@ -40,6 +41,23 @@ router.get('/:id', async (req, res, next) => {
 		next(err)
 	}
 	})
+
+// GET user's articles route
+router.get('/:id/articles', async (req, res, next) => {
+	try {
+		const foundUser = await User.findById(req.params.id)
+		const foundArticles = await Article.find({author: req.params.id})
+		console.log(req.params.id);
+		console.log(foundArticles);
+		res.render('users/userArticles.ejs', {
+			user: foundUser,
+			articles: foundArticles,
+			cloudinary: cloudinary
+		})
+	} catch(err) {
+		next(err)
+	}
+})
  
 // GET profile image route
 // router.get('/profile/image', async (req, res, next) => {
@@ -145,6 +163,8 @@ router.delete('/profile/:id', async (req, res, next) => {
 		next(err)
 	}
 })
+
+
 
 
 		

@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs')%>
+
+
+<h1 class='title'>Articles by <%=user.firstName%></h1>
+
+<div class="article-container">
+	
+<% for(let i = 0; i < articles.length; i++) {%>
+				
+<div class="card article" style="width: 30rem;">
+	<a href="/articles/<%=articles[i].id%>" >
+	<img src="<%=cloudinary.url(articles[i].imageId)%>" class="card-img-top" alt="..."> 
+		
+	</a>
+  <div class="card-body">
+  	<p><%=articles[i].title%></p>
+  	<p><%=articles[i].date.toLocaleString()%></p>
+  </div>
+</div>
+	
+<%}%>
+
+
+</div>
+
+
+<%- include('../partials/footer.ejs')%>
