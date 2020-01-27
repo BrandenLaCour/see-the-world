@@ -1,9 +1,9 @@
 <%- include('../partials/header.ejs')%>
 
 
-<h1>See All The Details About This Trip</h1>
-
-<div class="card mt-10" style="width: 35rem;">
+<h1 class='title'>See All The Details About This Trip</h1>
+<div class="content-container">
+    <div class="card mt-10" style="width: 35rem;">
   <img src="<%=imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title"><%=image.title%></h3>
@@ -13,8 +13,10 @@
     <button>Delete</button>
   </div>
   <div class="card-body">
-  	<p class="card-title"><%=image.comments%></p>
+    <p class="card-title"><%=image.comments%></p>
   </div>
 </div>
+</div>
+
 
 <%- include('../partials/footer.ejs')%>
