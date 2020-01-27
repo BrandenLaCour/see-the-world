@@ -16,6 +16,13 @@
     <input type="password" class="form-control col-10" id="password" name="password" placeholder="Password">
     
   </div>
+   <div class="row justify-content-center">
+    <div class="col-3 m-3">
+     <a href="/auth/register">Register</a>
+   </div>
+   <small></small>
+   <small></small>
+  </div>
   <div class="row justify-content-center">
     <div class="col-3"> <button type="submit" class="btn btn-primary">Submit</button></div>
   </div>
@@ -38,11 +45,11 @@
     if (input.val() === ''){
       if (input.parent().children().length !== 3){
         input.parent().append('<small class="required">This Field Is Required</small>')
-        
+        e.preventDefault()
 
       }
       
-      e.preventDefault()
+      
     }
 
 
