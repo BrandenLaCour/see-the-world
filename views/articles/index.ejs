@@ -3,9 +3,11 @@
 
 <h1>See The World</h1>
 
+<div class="article-container">
+	
 <% for(let i = 0; i < articles.length; i++) {%>
 				
-<div class="card mt-10" style="width: 35rem;">
+<div class="card article" style="width: 30rem;">
 	<a href="/articles/<%=articles[i].id%>" >
 	<img src="<%=cloudinary.url(articles[i].imageId)%>" class="card-img-top" alt="..."> 
 		
@@ -17,6 +19,9 @@
 </div>
 	
 <%}%>
+
+
+</div>
 
 
 <%- include('../partials/footer.ejs')%>
