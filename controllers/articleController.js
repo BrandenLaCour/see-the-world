@@ -11,14 +11,14 @@ const cloudinary = require('cloudinary').v2
 router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({})
-		let photosUrl = []
+		let articlesUrl = []
 		for(let i = 0; i < foundArticles.length; i++) {
-			photosUrl.push(cloudinary.url(`${foundArticles[i].imageId}.jpg`))
+			articlesUrl.push(cloudinary.url(`${foundArticles[i].imageId}.jpg`))
 
 		}
 
 		res.render('articles/index.ejs', {
-			photos: photosUrl,
+			articlesUrl: articlesUrl,
 			articles: foundArticles
 		})
 	} catch(err) {
@@ -121,14 +121,30 @@ router.get('/new', async (req, res, next) => {
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
+		const foundArticle = await Article.findById(req.params.id)
+		console.log(foundArticle);
 
-
-		res.render('articles/show.ejs')
+		const imageUrl = await cloudinary.url(`${foundArticle.imageId}.jpg`)
+		res.render('articles/show.ejs', {
+			imageUrl: imageUrl,
+			image: foundArticle
+		})
 	} catch(err) {
 		next(err)
 	}
 })
 
+
+// GET article show page
+router.get('/:id/image', async (req, res, next) => {
+	try {
+		const foundArticle = await Article.findById(req.params.id)
+
+		res.send(cloudinary.url(foundArticle.imageId))
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 
