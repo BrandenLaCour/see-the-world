@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt')
 
 
 // GET profile route
-router.get('/', async (req, res, next) => {
+router.get('/profile', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
 		console.log(foundUser);
@@ -25,23 +25,22 @@ router.get('/', async (req, res, next) => {
 		next(err)
 	}
 })
+ 
+// GET profile image route
+// router.get('/profile/image', async (req, res, next) => {
+// 	try {
+// 		const foundUser = await User.findById(req.session.userId)
 
-
-// GET profile route
-router.get('/image', async (req, res, next) => {
-	try {
-		const foundUser = await User.findById(req.session.userId)
-
-		res.send(cloudinary.url(foundUser.imageId))
-	} catch(err) {
-		next(err)
-	}
-})
+// 		res.send(cloudinary.url(foundUser.imageId))
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
 
 
 
 // GET edit route
-router.get('/:id/edit', async (req, res, next) => {
+router.get('/profile/:id/edit', async (req, res, next) => {
 	try {
 		const message = req.session.message
 		req.session.message = ''
@@ -64,7 +63,7 @@ router.get('/:id/edit', async (req, res, next) => {
 
 
 // Update route
-router.put('/:id', async (req, res, next) => {
+router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 	try {
 		// encrypt new pass
 		const salt = bcrypt.genSaltSync(10)
@@ -81,12 +80,24 @@ router.put('/:id', async (req, res, next) => {
 			favoritePlace: req.body.favoritePlace,
 			imageId: req.body.image
 		}
+		// if doesnt upload a new picture
 		if(!req.body.image) {
-			const user = User.findById(req.session.userId)
+			const user = await User.findById(req.session.userId)
 			newUser.imageId = user.imageId
-		} 
-		
 
+		} 
+		// if upload new picture
+		const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) {
+			if(error) next(error)
+		});
+		newUser.imageId = uploadResult.public_id
+
+
+		await User.findByIdAndUpdate(req.session.userId, newUser)
+		setTimeout(()=>{
+			res.redirect('/users/profile')
+
+		}, 100)
 	} catch(err) {
 		next(err)
 	}
