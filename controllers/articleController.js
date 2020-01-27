@@ -6,19 +6,15 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const Article = require('../models/article')
 const cloudinary = require('cloudinary').v2
+const fs = require('fs')
 
 // GET article index route
 router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({})
-		let articlesUrl = []
-		for(let i = 0; i < foundArticles.length; i++) {
-			articlesUrl.push(cloudinary.url(`${foundArticles[i].imageId}.jpg`))
-
-		}
 
 		res.render('articles/index.ejs', {
-			articlesUrl: articlesUrl,
+			cloudinary: cloudinary,
 			articles: foundArticles
 		})
 	} catch(err) {
@@ -154,17 +150,36 @@ router.get('/:id/image', async (req, res, next) => {
 //POST create route:
 router.post('/', upload.single('image'), async (req, res, next) => {
 	try {
-		
-		const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) { if (error) next(error) });
+		const filePath = req.file.path
+		const uploadResult = await cloudinary.uploader.upload(filePath, function(error, result) { if (error) next(error) });
 		const newArticle = {
 			title: req.body.title,
 			imageId: uploadResult.public_id,
 			description: req.body.description,
 			tips: req.body.tips,
 			location: req.body. location,
-			author: req.session.userId
+			author: '5e2f01398a89a6107ad52eac'
+			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
+
+		//delete upload local
+		fs.access(filePath, error => {
+
+			if (!error){
+				
+				fs.unlink(filePath, (err) => {
+					if (err) next(err);
+				})
+			}else {
+
+				next(error)
+			}
+
+		})
+
+
+
 		req.session.newFilterId = createdArticle._id
 		req.session.filterState = 'article'
 		res.redirect('/articles/filter')
