@@ -12,10 +12,13 @@ const fs = require('fs')
 router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({})
+		const message = req.session.message
+		req.session.message = ''
 
 		res.render('articles/index.ejs', {
 			cloudinary: cloudinary,
-			articles: foundArticles
+			articles: foundArticles,
+			message: message
 		})
 	} catch(err) {
 		next(err)

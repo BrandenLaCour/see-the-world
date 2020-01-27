@@ -4,6 +4,7 @@ const User = require('../models/user')
 const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 const upload = multer({ dest: "uploads/"})
+const bcrypt = require('bcrypt')
 
 
 
@@ -42,18 +43,49 @@ router.get('/image', async (req, res, next) => {
 // GET edit route
 router.get('/:id/edit', async (req, res, next) => {
 	try {
+		const message = req.session.message
+		req.session.message = ''
 		// check if the user is logged in
 		// if so, send them to the edit page
 		const isLoggedIn = req.session.loggedIn
 
 		const profileToEdit = await User.findById(req.session.userId)
-		console.log('profileToEdit');
-		console.log(profileToEdit);
 
 		res.render('user/edit.ejs', {
 			isLoggedIn: isLoggedIn,
-			profileToEdit: profileToEdit
+			user: profileToEdit,
+			message: message
 		})
+
+	} catch(err) {
+		next(err)
+	}
+})
+
+
+// Update route
+router.put('/:id', async (req, res, next) => {
+	try {
+		// encrypt new pass
+		const salt = bcrypt.genSaltSync(10)
+		const hashedPassword = bcrypt.hashSync(req.body.password, salt)
+
+		// new user proposal
+		const newUser = {
+			username: req.session.username,
+			password: hashedPassword,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			city: req.body.city,
+			about: req.body.about,
+			favoritePlace: req.body.favoritePlace,
+			imageId: req.body.image
+		}
+		if(!req.body.image) {
+			const user = User.findById(req.session.userId)
+			newUser.imageId = user.imageId
+		} 
+		
 
 	} catch(err) {
 		next(err)
