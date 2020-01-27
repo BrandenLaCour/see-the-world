@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 
 		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
 
-		res.render('user/profile.ejs', {
+		res.render('user/show.ejs', {
 			user: foundUser,
 			imageUrl: userPhotoUrl
 		})

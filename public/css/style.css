@@ -7,3 +7,8 @@ body {
 
 	color: red;
 }
+
+#profile-container {
+	display: flex;
+	justify-content: center
+}
