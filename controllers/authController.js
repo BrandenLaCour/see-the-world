@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt') // encrypt password
 const User = require('../models/user')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
@@ -29,8 +29,11 @@ router.post('/login', async (req, res, next) => {
 		// if the user is found check the password
 		// if is not found redirect to login
 		if(foundUser) {
-			
-			if(foundUser.password === req.body.password) {
+			// check that the password is correct
+			const loginInfoIsValid = bcrypt.compareSync(req.body.password, foundUser.password)
+
+
+			if(loginInfoIsValid) {
 				req.session.username = foundUser.username
 				req.session.userId = foundUser._id
 				req.session.message = `Welcome back ${req.session.username}`
@@ -72,10 +75,14 @@ router.get('/register', (req, res) => {
 // POST route
 router.post('/register', upload.single('image'), async (req, res, next) => {
 	try {
+		// encrypt password
+		const salt = bcrypt.genSaltSync(10)
+		const hashedPassword = bcrypt.hashSync(req.body.password, salt)
+
 		// new user proposal
 		const newUser = {
 			username: req.body.username,
-			password: req.body.password,
+			password: hashedPassword,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			city: req.body.city,
@@ -93,6 +100,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 
 			res.redirect('/auth/register')
 		} else {
+
 			//create user
 			const uploadResult = await cloudinary.uploader.upload(req.file.path, function(error, result) { if (error) next(error) });
 			newUser.imageId = uploadResult.public_id
