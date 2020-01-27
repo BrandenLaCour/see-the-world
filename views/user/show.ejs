@@ -7,10 +7,10 @@
 	<div class="card-body">
 		<div class="row justify-content-center ">
 	
-	<h3 class="card-title col-5"><%=user.firstName%> <%=user.lastName%></h3>
+	<h3 class="card-title col-5 col-md-8"><%=user.firstName%> <%=user.lastName%></h3>
 	</div>
 	<div class=" row justify-content-center">
-		<h5 class="card-title col-3"><%=user.city%></h5>
+		<h5 class="card-title col-3 col-md-5"><%=user.city%></h5>
 	</div>
 	
 	<div class="row">
@@ -19,11 +19,13 @@
 	<div class="row">
 		<p class="card-title"><strong class='mr-2'>Favorite Place:</strong> <%=user.favoritePlace%></p>
 	</div>
-	<div class="row justify-content-around">
+	<div class="row justify-content-between">
 		
-		<a href="#" class="btn btn-primary col-3">My Articles</a>
-		<a href="/users/profile/<%=user.id%>/edit" class="btn btn-primary col-3">Edit Profile</a>
-		<button class='btn btn-danger col-3'>Delete Profile</button>
+
+		<a href="#" class="btn btn-primary col-6 col-xl-3 col-lg-4 ">My Articles</a>
+		<a href="/users/profile/<%=user.id%>/edit" class="btn btn-primary col-6 col-xl-3 col-lg-4">Edit</a>
+		<button class='btn btn-danger col-6 col-xl-3 col-lg-4'>Delete</button>
+
 	</div>
 </div>
 
