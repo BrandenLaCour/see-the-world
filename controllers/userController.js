@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt')
 router.get('/profile', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-		console.log(foundUser);
+		// console.log(foundUser);
 
 		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
 
@@ -81,7 +81,7 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 			imageId: req.body.image
 		}
 		// if doesnt upload a new picture
-		if(!req.body.image) {
+		if(!req.file) {
 			const user = await User.findById(req.session.userId)
 			newUser.imageId = user.imageId
 
@@ -103,6 +103,18 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 	}
 })
 
+
+// Destroy profile route
+router.delete('/profile/:id', async (req, res, next) => {
+	try {
+		const user = await User.findByIdAndRemove(req.session.userId)
+		await req.session.destroy()
+
+		res.redirect('/auth/login')
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 
