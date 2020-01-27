@@ -43,6 +43,8 @@ const articleController = require('./controllers/articleController')
 app.use('/articles', articleController)
 const userController = require('./controllers/userController')
 app.use('/users', userController)
+const commentController = require('./controllers/commentController')
+app.use('/comments', commentController)
 
 
 app.get('/', (req, res) => {

@@ -24,8 +24,51 @@
   </div>
   
 </div>
- <p class="card-title"><%=article.comments%></p>
 </div>
+
+<form method="POST" action="/comments/<%=article._id%>">
+  <div class="comments-container">
+    <div class="card">
+      <div class="card-body">
+        
+      <div class="row">
+        <div class="col">
+          <textarea id="comments-text" name="commentText" placeholder="Enter comment"></textarea>
+          
+        </div>
+      </div>
+       <div class="row justify-content-center">
+        <div class="col-3">
+          <button class="btn btn-primary">Submit</button>
+          
+        </div>
+      </div>
+      
+    </div>
+      </div>
+</form>
+    <p class="card-title"><%=article.comments%></p>
+    
+  </div>
+
+
+<script type="text/javascript">
+  $('form').submit((e)=> {
+
+    const textArea = $('#comments-text').text()
+    if (!textArea ){
+      console.log(textArea.parent().children().length);
+      if (textArea.parent().children().length !== 2){
+        textArea.parent().append('<small class="required">This Field Is Required</small>')
+        
+      }
+      e.preventDefault()
+    }
+      
+  })
+
+
+</script>
 
 
 <%- include('../partials/footer.ejs')%>

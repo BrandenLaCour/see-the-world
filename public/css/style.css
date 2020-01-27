@@ -36,3 +36,14 @@ body {
 .signature {
 	margin-right: 30px;
 }
+
+.comments-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+
+#comments-text {
+	width: 38vw;
+}
