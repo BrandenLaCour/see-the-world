@@ -1,21 +1,24 @@
 <%- include('../partials/header.ejs')%>
 
 
-<h1 class='title'>See All The Details About This Trip</h1>
+<h1 class='title'>See The World</h1>
 <div class="content-container">
     <div class="card mt-10" style="width: 35rem;">
   <img src="<%=imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
-    <h3 class="card-title"><%=image.title%></h3>
-    <p class="card-title"><%=image.description%></p>
-    <p class="card-title"><%=image.tips%></p>
-    <a href="#" class="btn btn-primary">Edit</a>
-    <button>Delete</button>
+    <h3 class="card-title"><%=article.title%></h3>
+    <p class="card-title"><%=article.description%></p>
+    <p class="card-title"><%=article.tips%></p>
+    <div class="row justify-content-between">
+    <a href="/articles/<%=article._id%>/edit" class="btn btn-primary col-6 col-xl-3 col-lg-4">Edit</a>
+    <button class='btn btn-danger col-6 col-xl-3 col-lg-4'>Delete</button>
+
   </div>
-  <div class="card-body">
-    <p class="card-title"><%=image.comments%></p>
+   
   </div>
+  
 </div>
+ <p class="card-title"><%=article.comments%></p>
 </div>
 
 

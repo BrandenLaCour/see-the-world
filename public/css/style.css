@@ -11,11 +11,13 @@ body {
 .content-container {
 	display: flex;
 	justify-content: center
+	
 }
 
 .article-container {
 	display: flex;
 	justify-content: center;
+
 	flex-wrap: wrap;
 }
 
