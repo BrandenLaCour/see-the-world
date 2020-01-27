@@ -47,9 +47,13 @@ router.get('/:id/edit', async (req, res, next) => {
 		const isLoggedIn = req.session.loggedIn
 
 		const profileToEdit = await User.findById(req.session.userId)
+		console.log('profileToEdit');
 		console.log(profileToEdit);
 
-		res.render('user/edit.ejs')
+		res.render('user/edit.ejs', {
+			isLoggedIn: isLoggedIn,
+			profileToEdit: profileToEdit
+		})
 
 	} catch(err) {
 		next(err)
