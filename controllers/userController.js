@@ -13,7 +13,6 @@ const bcrypt = require('bcrypt')
 router.get('/profile', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-		// console.log(foundUser);
 
 		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
 

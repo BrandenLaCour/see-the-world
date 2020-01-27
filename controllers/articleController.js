@@ -171,12 +171,23 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundArticle = await Article.findById(req.params.id)
-		console.log(foundArticle);
+
+		const userId = req.session.userId
+		console.log(foundArticle.author);
+		console.log(userId);
+
+		let foundAuthor = false
+		// is if this is the owner of the article
+		if(userId == foundArticle.author){
+			// if so, foundAuthor is true
+			foundAuthor = true
+		}
 
 		const imageUrl = await cloudinary.url(`${foundArticle.imageId}.jpg`)
 		res.render('articles/show.ejs', {
 			imageUrl: imageUrl,
-			article: foundArticle
+			article: foundArticle,
+			foundAuthor: foundAuthor
 		})
 	} catch(err) {
 		next(err)
@@ -211,7 +222,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			description: req.body.description,
 			tips: req.body.tips,
 			location: req.body. location,
-			author: '5e2f01398a89a6107ad52eac'
+			author: req.session.userId
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
