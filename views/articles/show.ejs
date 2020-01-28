@@ -58,7 +58,9 @@
           <!-- add styling with bootstrap rows/cols -->
           <ul>
             <li><%=comment.text%></li>
-            <li><%=comment.date.toLocaleString()%></li>
+            <li><small class='comment-divider'><%=comment.date.toLocaleString()%></small></li>
+            <li><small><a href="/users/<%=comment.user._id%>"><%=comment.user.firstName%></a></small></li>
+           
             <!-- we need to deep populate to get the comment author -->
           </ul>
           </div>  

@@ -158,7 +158,9 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
-		const foundArticle = await Article.findById(req.params.id).populate('author')
+		const foundArticle = await Article.findById(req.params.id).populate('author').populate('comments.user')
+		
+		// const articlePopComments = await Article.findById(req.params.id).populate('comments.user')
 		const userId = req.session.userId
 
 		let foundAuthor = false
@@ -196,8 +198,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
-		console.log(createdArticle);
-		//delete upload local
+				//delete upload local
 		fs.access(filePath, error => {
 
 			if (!error){

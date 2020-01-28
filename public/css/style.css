@@ -51,3 +51,9 @@ body {
 li {
 	list-style: none;
 }
+
+.comment-divider {
+
+	border-top: 1px solid grey;
+
+}
