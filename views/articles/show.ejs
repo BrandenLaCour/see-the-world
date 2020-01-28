@@ -59,8 +59,11 @@
           <ul>
             <li><%=comment.text%></li>
             <li><small class='comment-divider'><%=comment.date.toLocaleString()%></small></li>
+            <%if (comment.user) {%>
             <li><small><a href="/users/<%=comment.user._id%>"><%=comment.user.firstName%></a></small></li>
-           
+           <%} else {%>
+            <li><small>User Deleted</small></li>
+           <%}%>
             <!-- we need to deep populate to get the comment author -->
           </ul>
           </div>  
