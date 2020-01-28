@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
 
 
 
-// GET filter (EDIT) route
+// GET filter (show/EDIT) route
 router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
@@ -40,6 +40,7 @@ router.get('/filter', async (req, res, next) => {
 			const foundUser = await User.findById(req.session.newFilterId)
 			req.session.filterState = ''
 			req.session.newFilterId = ''
+			req.session.filterState = 'profile'
 			
 			//needs to be refactored, but this checks if the user's photo has been filtered or not, then pics the proper photo
 			//if pulling from cloudinary, using the original photo.
@@ -48,7 +49,9 @@ router.get('/filter', async (req, res, next) => {
 				res.render('filter.ejs', {
 				message: message,
 				objectId: foundUser._id,
-
+				imageUrl: userPhotoUrl,
+				imageId: foundUser.imageId,
+				cloudUrl: process.env.CLOUD_URL
 				})
 
 			}
@@ -57,7 +60,9 @@ router.get('/filter', async (req, res, next) => {
 				res.render('filter.ejs', {
 				message: message,
 				imageUrl: cloudinaryUrl,
-				objectId: foundUser._id
+				objectId: foundUser._id,
+				imageId: foundUser.imageId,
+				cloudUrl: process.env.CLOUD_URL
 				})
 			}
 			
@@ -68,6 +73,7 @@ router.get('/filter', async (req, res, next) => {
 			const foundArticle = await Article.findById(req.session.newFilterId)
 				req.session.filterState = ''
 				req.session.newFilterId = ''
+				req.session.filterState = 'article'
 			//needs to be refactored, but this checks if the user's photo has been filtered or not, then pics the proper photo
 			//if pulling from cloudinary, using the original photo.
 			if (foundArticle.imageUrl){
@@ -75,7 +81,9 @@ router.get('/filter', async (req, res, next) => {
 				res.render('filter.ejs', {
 				message: message,
 				imageUrl: articlePhotoUrl,
-				objectId: foundArticle._id
+				objectId: foundArticle._id,
+				imageId: foundArticle.imageId,
+				cloudUrl: process.env.CLOUD_URL
 				})
 
 			}
@@ -85,7 +93,9 @@ router.get('/filter', async (req, res, next) => {
 				res.render('filter.ejs', {
 				message: message,
 				imageUrl: cloudinaryUrl,
-				objectId: foundArticle._id
+				objectId: foundArticle._id,
+				imageId: foundArticle.imageId,
+				cloudUrl: process.env.CLOUD_URL
 				})
 
 			}
@@ -104,8 +114,27 @@ router.get('/filter', async (req, res, next) => {
 router.put('/filter/:id', async (req, res, next) => {
 
 	try {
-		//figure out if an article is coming through or if a user is 
-		// then figure out how to get the parameter of which filter
+		const filter = req.body.filter
+		const id = req.params.id
+		if (req.session.filterState === 'profile'){
+			//if we are adding filter to profile
+			const foundUser = await User.findById(id)
+			//concat the new filter with the imageid and the url
+			const imageUrl = `${process.env.CLOUD_URL}${filter}/${foundUser.imageId}`
+			const user = User.findByIdAndUpdate(id, {imageUrl: imageUrl})
+			//add cloudinary url to imageUrl of user
+			res.redirect('/articles/filter')
+
+		}
+		else {
+			//if we are adding filter to article photo
+			//add cloudinary url to imageUrl of article
+
+
+		}
+
+		//redirect to filter show page
+		
 		
 	}
 	catch(err){
@@ -246,7 +275,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
-		console.log(createdArticle);
+		
 		//delete upload local
 		fs.access(filePath, error => {
 
