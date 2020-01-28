@@ -46,7 +46,8 @@ router.get('/filter', async (req, res, next) => {
 				const userPhotoUrl = foundUser.imageUrl
 				res.render('filter.ejs', {
 				message: message,
-				imageUrl: userPhotoUrl
+				objectId: foundUser._id,
+
 				})
 
 			}
@@ -54,7 +55,8 @@ router.get('/filter', async (req, res, next) => {
 				const cloudinaryUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
 				res.render('filter.ejs', {
 				message: message,
-				imageUrl: cloudinaryUrl
+				imageUrl: cloudinaryUrl,
+				objectId: foundUser._id
 				})
 			}
 			
@@ -71,7 +73,8 @@ router.get('/filter', async (req, res, next) => {
 				const articlePhotoUrl = foundArticle.imageUrl
 				res.render('filter.ejs', {
 				message: message,
-				imageUrl: articlePhotoUrl
+				imageUrl: articlePhotoUrl,
+				objectId: foundArticle._id
 				})
 
 			}
@@ -80,7 +83,8 @@ router.get('/filter', async (req, res, next) => {
 				const cloudinaryUrl = cloudinary.url(`${foundArticle.imageId}.jpg`)
 				res.render('filter.ejs', {
 				message: message,
-				imageUrl: cloudinaryUrl
+				imageUrl: cloudinaryUrl,
+				objectId: foundArticle._id
 				})
 
 			}
@@ -99,7 +103,8 @@ router.get('/filter', async (req, res, next) => {
 router.put('/filter/:id', async (req, res, next) => {
 
 	try {
-
+		//figure out if an article is coming through or if a user is 
+		// then figure out how to get the parameter of which filter
 		
 	}
 	catch(err){

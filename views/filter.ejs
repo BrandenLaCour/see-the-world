@@ -8,7 +8,9 @@
   <img src="<%=imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <div class="row justify-content-between">
-		<a href="#" class="btn btn-secondary col-6 col-xl-3 col-lg-4 ">Audrey</a>
+		<form method="PUT" action="/articles/filter/<%=objectId%>">
+			<button name='audrey' value='audrey' class="btn btn-secondary col-6 col-xl-3 col-lg-4 ">Audrey</button>
+		</form>
 		<a href="#" class="btn btn-warning col-6 col-xl-3 col-lg-4">Red Rock </a>
 		<a href="#" class="btn btn-primary col-6 col-xl-3 col-lg-4">Frost </a>
 		<a href="#" class="btn btn-danger col-6 col-xl-3 col-lg-4">Sizzle </a>
