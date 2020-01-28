@@ -5,14 +5,15 @@
 <h3><%=message%></h3>
 <div class="content-container">
 	<div class="card mt-10" style="width: 35rem;">
-  <img id="mainPic" src="<%=imageUrl%>" class="card-img-top" alt="...">
+  <img id="mainPic" src="" class="card-img-top" alt="...">
   <div class="card-body">
     <div class="row justify-content-between">
 
-		<button name='filter' value='e_art:audrey' id='audrey' class="btn btn-secondary col-6 col-xl-3 col-lg-4">Audrey</button>
-		<button name='filter' value='e_art:red_rock' id='audrey' class="btn btn-warning col-6 col-xl-3 col-lg-4">Red Rock </button>
-		<button name='filter' value='e_art:frost' id='audrey' class="btn btn-primary col-6 col-xl-3 col-lg-4">Frost </button>
-		<button name='filter' value='e_art:sizzle' id='audrey' class="btn btn-danger col-6 col-xl-3 col-lg-4">Sizzle </button>
+		<button name='filter' value='e_art:audrey' id='audrey' class="fil btn btn-secondary col-6 col-xl-2 col-lg-4">Audrey</button>
+		<button name='filter' value='e_art:red_rock' id='audrey' class="fil btn btn-warning col-6 col-xl-2 col-lg-4">Red Rock </button>
+		<button name='filter' value='e_art:frost' id='audrey' class="fil btn btn-primary col-6 col-xl-2 col-lg-4">Frost </button>
+		<button name='filter' value='e_art:sizzle' id='audrey' class="fil btn btn-danger col-6 col-xl-2 col-lg-4">Sizzle </button>
+		<button name='filter' value='' id='audrey' class="fil btn btn-danger col-6 col-xl-2 col-lg-4">Normal </button>
 		
 	</div>
 	<div class="row justify-content-center">
@@ -29,6 +30,7 @@
 
 <script type="text/javascript">
 	
+$('#mainPic').attr('src', `<%=cloudUrl%>/<%=imageId%>`)
 $('button').click((e) => {
 
 	const filter = $(e.target).val()

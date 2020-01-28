@@ -14,7 +14,7 @@ const Article = require('../models/article')
 router.get('/profile/', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-		const userPhotoUrl = `${process.env.CLOUD_URL}e_grayscale/${foundUser.imageId}.jpg`
+		const userPhotoUrl = !foundUser.imageUrl ? `${process.env.CLOUD_URL}/${foundUser.imageId}` : foundUser.imageUrl
 
 		res.render('users/showProfile.ejs', {
 			user: foundUser,
@@ -139,8 +139,10 @@ router.put('/profile/:id', upload.single('image'), async (req, res, next) => {
 
 		}
 		await User.findByIdAndUpdate(req.session.userId, newUser)
+		req.session.newFilterId = req.session.userId
+        req.session.filterState = 'register'
 		setTimeout(()=>{
-			res.redirect('/users/profile')
+			res.redirect('/articles/filter')
 
 		}, 100)
 	} catch(err) {

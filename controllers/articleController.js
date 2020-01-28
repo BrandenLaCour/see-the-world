@@ -30,6 +30,7 @@ router.get('/', async (req, res, next) => {
 
 
 // GET filter (show/EDIT) route
+//need to dry this up
 router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
@@ -126,7 +127,7 @@ router.put('/filter/:id', async (req, res, next) => {
 			
 			await User.findByIdAndUpdate(id, {imageUrl: imageUrl})
 			//add cloudinary url to imageUrl of user
-			
+			res.redirect('/articles')
 
 		}
 		else {
@@ -136,10 +137,9 @@ router.put('/filter/:id', async (req, res, next) => {
 			const imageUrl = `${cloudUrl}/${foundArticle.imageId}`
 
 			await Article.findByIdAndUpdate(id, {imageUrl: imageUrl})
+			res.redirect('/articles/' + foundArticle._id)
 
 		}
-
-		res.redirect('/articles')
 		//redirect to filter show page
 		
 		
@@ -150,30 +150,6 @@ router.put('/filter/:id', async (req, res, next) => {
 	}
 
 })
-// GET image for filter
-// router.get('/filter/image', async (req, res, next) => {
-// 	try {
-// 		if (req.session.filterState === "register"){
-// 			const foundUser = await User.findById(req.session.newFilterId)
-// 			req.session.filterState = ''
-// 			req.session.newFilterId = ''
-			
-// 			res.send(cloudinary.url(foundUser.imageId))
-// 		}
-// 		else {
-// 			const foundArticle = await Article.findById(req.session.newFilterId)
-// 			req.session.filterState = ''
-// 			req.session.newFilterId = ''
-			
-// 			res.send(cloudinary.url(foundArticle.imageId))
-
-// 		}
-		
-// 	} catch(err) {
-// 		next(err)
-// 	}
-// })
-
 
 // GET new route
 router.get('/new', async (req, res, next) => {
@@ -224,8 +200,10 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 		}
 
 		await Article.findByIdAndUpdate(req.params.id, articleEdited)
+		req.session.newFilterId = req.params.id
+        req.session.filterState = 'article'
 		setTimeout(()=>{
-			res.redirect(`/articles/${req.params.id}`)
+			res.redirect(`/articles/filter`)
 
 		}, 100)
 
