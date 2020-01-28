@@ -3,7 +3,7 @@
 
 <div class="content-container">
 	<div class="card mt-10" style="width: 37%;" >
-	<img src="<%=imageUrl%>" style='height: 50vh;'>
+	<img src="<%=!user.imageUrl ? cloudinary.url(user.imageId) : user.imageUrl%>" style='height: 50vh;'>
 	<div class="card-body">
 		<div class="row justify-content-center ">
 	
@@ -20,7 +20,7 @@
 		<p class="card-title"><strong class='mr-2'>Favorite Place:</strong> <%=user.favoritePlace%></p>
 	</div>
 	<div class="row justify-content-center">
-	<a href="/users/<%=user._id%>/articles" class="btn btn-primary col-6 col-xl-3 col-lg-4 "><%=user.firstName%>'s Articles</a>
+	<a href="" class="btn btn-primary col-6 col-xl-3 col-lg-4 "><%=user.firstName%>'s Articles</a>
 	</div>
 </div>
 

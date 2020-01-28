@@ -114,25 +114,32 @@ router.get('/filter', async (req, res, next) => {
 router.put('/filter/:id', async (req, res, next) => {
 
 	try {
+		
 		const filter = req.body.filter
 		const id = req.params.id
+		const cloudUrl = `${process.env.CLOUD_URL}${filter}`
 		if (req.session.filterState === 'profile'){
 			//if we are adding filter to profile
 			const foundUser = await User.findById(id)
 			//concat the new filter with the imageid and the url
-			const imageUrl = `${process.env.CLOUD_URL}${filter}/${foundUser.imageId}`
-			const user = User.findByIdAndUpdate(id, {imageUrl: imageUrl})
+			const imageUrl =  `${cloudUrl}/${foundUser.imageId}`
+			
+			await User.findByIdAndUpdate(id, {imageUrl: imageUrl})
 			//add cloudinary url to imageUrl of user
-			res.redirect('/articles/filter')
+			
 
 		}
 		else {
 			//if we are adding filter to article photo
+			const foundArticle = await Article.findById(id)
 			//add cloudinary url to imageUrl of article
+			const imageUrl = `${cloudUrl}/${foundArticle.imageId}`
 
+			await Article.findByIdAndUpdate(id, {imageUrl: imageUrl})
 
 		}
 
+		res.redirect('/articles')
 		//redirect to filter show page
 		
 		

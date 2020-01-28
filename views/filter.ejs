@@ -8,20 +8,19 @@
   <img id="mainPic" src="<%=imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <div class="row justify-content-between">
-		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
-			
-		<button name='filter' value='e_art:audrey' id='audrey' class="btn btn-secondary">Audrey</button>
-		</form>
-		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
-		<button name='filter' value='e_art:red_rock' id='audrey' class="btn btn-warning ">Red Rock </button>
-		</form>
-		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
-		<button name='filter' value='e_art:frost' id='audrey' class="btn btn-primary ">Frost </button>
-		</form>
-		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
-		<button name='filter' value='e_art:sizzle' id='audrey' class="btn btn-danger ">Sizzle </button>
-		</form>
+
+		<button name='filter' value='e_art:audrey' id='audrey' class="btn btn-secondary col-6 col-xl-3 col-lg-4">Audrey</button>
+		<button name='filter' value='e_art:red_rock' id='audrey' class="btn btn-warning col-6 col-xl-3 col-lg-4">Red Rock </button>
+		<button name='filter' value='e_art:frost' id='audrey' class="btn btn-primary col-6 col-xl-3 col-lg-4">Frost </button>
+		<button name='filter' value='e_art:sizzle' id='audrey' class="btn btn-danger col-6 col-xl-3 col-lg-4">Sizzle </button>
 		
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-3">
+			<form method="POST" action="/articles/filter/<%=objectId%>?_method=PUT">
+				<button id='filter' name="filter" value="" class='btn btn-primary'>Submit</button>
+			</form>
+		</div>
 	</div>
   </div>
 </div>
@@ -35,6 +34,7 @@ $('button').click((e) => {
 	const filter = $(e.target).val()
 	const filteredUrl = `<%=cloudUrl%>${filter}/<%=imageId%>`
 	$('#mainPic').attr('src', filteredUrl)
+	const finalUrl = $('#filter').val(filter)
 
 })
 
