@@ -6,7 +6,7 @@ const multer = require('multer')
 const upload = multer({ dest: "uploads/"})
 const bcrypt = require('bcrypt')
 const Article = require('../models/article')
-
+const fs = require('fs')
 
 
 
@@ -14,7 +14,7 @@ const Article = require('../models/article')
 router.get('/profile/', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.session.userId)
-		const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
+		const userPhotoUrl = `${process.env.CLOUD_URL}e_grayscale/${foundUser.imageId}.jpg`
 
 		res.render('users/showProfile.ejs', {
 			user: foundUser,

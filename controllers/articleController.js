@@ -29,35 +29,69 @@ router.get('/', async (req, res, next) => {
 
 
 
-// GET filter route
+// GET filter (EDIT) route
 router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
 		req.session.message = ''
 		
-
+		//if came from register, show profile photo
 		if (req.session.filterState === "register"){
 			const foundUser = await User.findById(req.session.newFilterId)
 			req.session.filterState = ''
 			req.session.newFilterId = ''
 			
-			const userPhotoUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
-			res.render('filter.ejs', {
-			message: message,
-			imageUrl: userPhotoUrl
-		})
-		}
-		else {
-			const foundArticle = await Article.findById(req.session.newFilterId)
-			req.session.filterState = ''
-			req.session.newFilterId = ''
-			
-			const articlePhotoUrl = cloudinary.url(`${foundArticle.imageId}.jpg`)
-			res.render('filter.ejs', {
-			message: message,
-			imageUrl: articlePhotoUrl
-		})
+			//needs to be refactored, but this checks if the user's photo has been filtered or not, then pics the proper photo
+			//if pulling from cloudinary, using the original photo.
+			if (foundUser.imageUrl){
+				const userPhotoUrl = foundUser.imageUrl
+				res.render('filter.ejs', {
+				message: message,
+				objectId: foundUser._id,
 
+				})
+
+			}
+			else {
+				const cloudinaryUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
+				res.render('filter.ejs', {
+				message: message,
+				imageUrl: cloudinaryUrl,
+				objectId: foundUser._id
+				})
+			}
+			
+			
+		}
+		else {// show article photo
+
+			const foundArticle = await Article.findById(req.session.newFilterId)
+				req.session.filterState = ''
+				req.session.newFilterId = ''
+			//needs to be refactored, but this checks if the user's photo has been filtered or not, then pics the proper photo
+			//if pulling from cloudinary, using the original photo.
+			if (foundArticle.imageUrl){
+				const articlePhotoUrl = foundArticle.imageUrl
+				res.render('filter.ejs', {
+				message: message,
+				imageUrl: articlePhotoUrl,
+				objectId: foundArticle._id
+				})
+
+			}
+			else {
+				
+				const cloudinaryUrl = cloudinary.url(`${foundArticle.imageId}.jpg`)
+				res.render('filter.ejs', {
+				message: message,
+				imageUrl: cloudinaryUrl,
+				objectId: foundArticle._id
+				})
+
+			}
+
+
+			
 		}
 		
 		
@@ -66,30 +100,43 @@ router.get('/filter', async (req, res, next) => {
 	}
 })
 
+// filter (UPDATE) route, updates the picture with the filter chosen
+router.put('/filter/:id', async (req, res, next) => {
 
-// GET image for filter
-router.get('/filter/image', async (req, res, next) => {
 	try {
-		if (req.session.filterState === "register"){
-			const foundUser = await User.findById(req.session.newFilterId)
-			req.session.filterState = ''
-			req.session.newFilterId = ''
-			
-			res.send(cloudinary.url(foundUser.imageId))
-		}
-		else {
-			const foundArticle = await Article.findById(req.session.newFilterId)
-			req.session.filterState = ''
-			req.session.newFilterId = ''
-			
-			res.send(cloudinary.url(foundArticle.imageId))
-
-		}
+		//figure out if an article is coming through or if a user is 
+		// then figure out how to get the parameter of which filter
 		
-	} catch(err) {
-		next(err)
 	}
+	catch(err){
+		next(err)
+
+	}
+
 })
+// GET image for filter
+// router.get('/filter/image', async (req, res, next) => {
+// 	try {
+// 		if (req.session.filterState === "register"){
+// 			const foundUser = await User.findById(req.session.newFilterId)
+// 			req.session.filterState = ''
+// 			req.session.newFilterId = ''
+			
+// 			res.send(cloudinary.url(foundUser.imageId))
+// 		}
+// 		else {
+// 			const foundArticle = await Article.findById(req.session.newFilterId)
+// 			req.session.filterState = ''
+// 			req.session.newFilterId = ''
+			
+// 			res.send(cloudinary.url(foundArticle.imageId))
+
+// 		}
+		
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
 
 
 // GET new route
