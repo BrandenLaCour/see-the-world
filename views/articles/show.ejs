@@ -18,6 +18,15 @@
       <button class='btn btn-danger'>Delete</button>
       </form>
       <% } -%>
+    <div class="row">
+      <div class="col">
+        <label>Likes: 0</label>
+        <form method="POST" action="/articles/likes/<%=article._id%>?_method=PUT">
+          <button>Like</button>
+          
+        </form>
+      </div>
+    </div>
 
   </div>
    

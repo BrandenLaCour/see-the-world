@@ -179,6 +179,19 @@ router.get('/:id/edit', async (req, res, next) => {
 	
 })
 
+// PUT likes route (update likes): articles/likes
+router.put('/likes/:id', async (req, res, next) => {
+	try {
+		const userId = req.session.userId
+		const articleId = req.params.id
+		console.log(req.params.id);
+
+		res.send('heyy')
+	} catch(err) {
+		next(err)
+	}
+})
+
 //Update route for Articles
 router.put('/:id', upload.single('image'), async (req, res, next) => {
 
@@ -215,6 +228,10 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 	}
 	
 })
+
+
+
+
 
 
 // GET article show page
