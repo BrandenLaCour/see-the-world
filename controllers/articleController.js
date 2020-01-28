@@ -246,7 +246,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
-		console.log(createdArticle);
+
 		//delete upload local
 		fs.access(filePath, error => {
 
