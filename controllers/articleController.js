@@ -7,6 +7,7 @@ const upload = multer({ dest: 'uploads/' })
 const Article = require('../models/article')
 const cloudinary = require('cloudinary').v2
 const fs = require('fs')
+const superagent = require('superagent')
 
 // GET article index route
 router.get('/', async (req, res, next) => {
@@ -158,13 +159,11 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
-		const foundArticle = await Article.findById(req.params.id).populate('author').populate('comments.user')
-		
-		// const articlePopComments = await Article.findById(req.params.id).populate('comments.user')
+		const foundArticle = await Article.findById(req.params.id).populate('author')
 		const userId = req.session.userId
+		const mapUrl = superagent.get()
 
 		let foundAuthor = false
-		console.log(foundArticle.author);
 		// is if this is the owner of the article
 		if(foundArticle.author && userId == foundArticle.author._id){
 			// if so, foundAuthor is true
@@ -199,7 +198,8 @@ router.post('/', upload.single('image'), async (req, res, next) => {
 			//author: 'req.session.userId' this is so we can not have to log in during development
 		}
 		const createdArticle = await Article.create(newArticle)
-				//delete upload local
+		console.log(createdArticle);
+		//delete upload local
 		fs.access(filePath, error => {
 
 			if (!error){
