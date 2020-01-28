@@ -18,24 +18,24 @@
       <button class='btn btn-danger'>Delete</button>
       </form>
       <% } -%>
+
+  </div>
+   
     <div class="row">
       <div class="col">
-        <label>Likes: 0</label>
+        <label>Likes: <%=article.likes.length%></label>
         <form method="POST" action="/articles/likes/<%=article._id%>?_method=PUT">
           <button>Like</button>
           
         </form>
       </div>
     </div>
-
-  </div>
-   
   </div>
   
 </div>
 </div>
 
-<form method="POST" action="/comments/<%=article._id%>">
+<form id="comments-form" method="POST" action="/comments/<%=article._id%>">
   <div class="comments-container">
     <div class="card">
       <div class="card-body">
@@ -93,7 +93,7 @@
 
 
 <script type="text/javascript">
-   $('form').submit( (e) => {
+   $('#comments-form').submit( (e) => {
   
   const textArea = $('#comments-text').val()
  

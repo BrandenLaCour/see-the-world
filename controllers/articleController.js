@@ -179,18 +179,7 @@ router.get('/:id/edit', async (req, res, next) => {
 	
 })
 
-// PUT likes route (update likes): articles/likes
-router.put('/likes/:id', async (req, res, next) => {
-	try {
-		const userId = req.session.userId
-		const articleId = req.params.id
-		console.log(req.params.id);
 
-		res.send('heyy')
-	} catch(err) {
-		next(err)
-	}
-})
 
 //Update route for Articles
 router.put('/:id', upload.single('image'), async (req, res, next) => {
@@ -260,6 +249,33 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
+// PUT likes route (update likes): articles/likes
+router.put('/likes/:id', async (req, res, next) => {
+	try {
+		const userId = req.session.userId
+		const articleId = req.params.id
+		const foundArticle = await Article.findById(articleId)
+		if(foundArticle.likes.includes(userId)) {
+			// maybe remove the user
+
+
+			res.redirect('/articles/'+articleId)
+			// else add the user 
+		} else {
+			foundArticle.likes.push(userId) 
+			const updatedArticle = await Article.findByIdAndUpdate(articleId, foundArticle)
+
+			res.redirect('/articles/'+articleId)
+		}
+
+
+		console.log(req.params.id);
+
+
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 //POST create route:
