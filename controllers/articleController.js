@@ -7,7 +7,7 @@ const upload = multer({ dest: 'uploads/' })
 const Article = require('../models/article')
 const cloudinary = require('cloudinary').v2
 const fs = require('fs')
-const superagent = require('superagent')
+const MAP_API_KEY = process.env.MAP_KEY
 
 // GET article index route
 router.get('/', async (req, res, next) => {
@@ -208,7 +208,7 @@ router.get('/:id', async (req, res, next) => {
 	try {
 		const foundArticle = await Article.findById(req.params.id).populate('author')
 		const userId = req.session.userId
-		const mapUrl = superagent.get()
+		const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${MAP_API_KEY}&q=${foundArticle.location}`
 
 		let foundAuthor = false
 		// is if this is the owner of the article
@@ -221,7 +221,8 @@ router.get('/:id', async (req, res, next) => {
 		res.render('articles/show.ejs', {
 			imageUrl: imageUrl,
 			article: foundArticle,
-			foundAuthor: foundAuthor
+			foundAuthor: foundAuthor,
+			mapUrl: mapUrl
 		})
 	} catch(err) {
 		next(err)
