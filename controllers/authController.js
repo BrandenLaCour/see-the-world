@@ -5,7 +5,7 @@ const User = require('../models/user')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const cloudinary = require('cloudinary').v2
-
+const fs = require('fs')
 
 
 // route for login page

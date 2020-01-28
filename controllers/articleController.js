@@ -28,7 +28,7 @@ router.get('/', async (req, res, next) => {
 
 
 
-// GET filter route
+// GET filter (EDIT) route
 router.get('/filter', async (req, res, next) => {
 	try {
 		const message = req.session.message
@@ -65,30 +65,32 @@ router.get('/filter', async (req, res, next) => {
 	}
 })
 
+router.
+
 
 // GET image for filter
-router.get('/filter/image', async (req, res, next) => {
-	try {
-		if (req.session.filterState === "register"){
-			const foundUser = await User.findById(req.session.newFilterId)
-			req.session.filterState = ''
-			req.session.newFilterId = ''
+// router.get('/filter/image', async (req, res, next) => {
+// 	try {
+// 		if (req.session.filterState === "register"){
+// 			const foundUser = await User.findById(req.session.newFilterId)
+// 			req.session.filterState = ''
+// 			req.session.newFilterId = ''
 			
-			res.send(cloudinary.url(foundUser.imageId))
-		}
-		else {
-			const foundArticle = await Article.findById(req.session.newFilterId)
-			req.session.filterState = ''
-			req.session.newFilterId = ''
+// 			res.send(cloudinary.url(foundUser.imageId))
+// 		}
+// 		else {
+// 			const foundArticle = await Article.findById(req.session.newFilterId)
+// 			req.session.filterState = ''
+// 			req.session.newFilterId = ''
 			
-			res.send(cloudinary.url(foundArticle.imageId))
+// 			res.send(cloudinary.url(foundArticle.imageId))
 
-		}
+// 		}
 		
-	} catch(err) {
-		next(err)
-	}
-})
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
 
 
 // GET new route
