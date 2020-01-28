@@ -6,7 +6,7 @@ const multer = require('multer')
 const upload = multer({ dest: "uploads/"})
 const bcrypt = require('bcrypt')
 const Article = require('../models/article')
-const fs = require('fs')
+
 
 
 
@@ -47,8 +47,7 @@ router.get('/:id/articles', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.params.id)
 		const foundArticles = await Article.find({author: req.params.id})
-		console.log(req.params.id);
-		console.log(foundArticles);
+		
 		res.render('users/userArticles.ejs', {
 			user: foundUser,
 			articles: foundArticles,

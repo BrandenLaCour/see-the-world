@@ -5,21 +5,40 @@
 <h3><%=message%></h3>
 <div class="content-container">
 	<div class="card mt-10" style="width: 35rem;">
-  <img src="<%=imageUrl%>" class="card-img-top" alt="...">
+  <img id="mainPic" src="<%=imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <div class="row justify-content-between">
-		<form method="PUT" action="/articles/filter/<%=objectId%>">
-			<button name='audrey' value='audrey' class="btn btn-secondary col-6 col-xl-3 col-lg-4 ">Audrey</button>
+		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
+			
+		<button name='filter' value='e_art:audrey' id='audrey' class="btn btn-secondary">Audrey</button>
 		</form>
-		<a href="#" class="btn btn-warning col-6 col-xl-3 col-lg-4">Red Rock </a>
-		<a href="#" class="btn btn-primary col-6 col-xl-3 col-lg-4">Frost </a>
-		<a href="#" class="btn btn-danger col-6 col-xl-3 col-lg-4">Sizzle </a>
+		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
+		<button name='filter' value='e_art:red_rock' id='audrey' class="btn btn-warning ">Red Rock </button>
+		</form>
+		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
+		<button name='filter' value='e_art:frost' id='audrey' class="btn btn-primary ">Frost </button>
+		</form>
+		<form  method="POST" action="/articles/filter/<%=objectId%>?_method=PUT" class="col-6 col-xl-3 col-lg-4">
+		<button name='filter' value='e_art:sizzle' id='audrey' class="btn btn-danger ">Sizzle </button>
+		</form>
+		
 	</div>
   </div>
 </div>
 	
 </div>
 
+<script type="text/javascript">
+	
+$('button').click((e) => {
+
+	const filter = $(e.target).val()
+	const filteredUrl = `<%=cloudUrl%>${filter}/<%=imageId%>`
+	$('#mainPic').attr('src', filteredUrl)
+
+})
+
+</script>
 
 
 <%- include('./partials/footer.ejs')%>
