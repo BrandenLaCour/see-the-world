@@ -164,12 +164,14 @@ router.get('/:id', async (req, res, next) => {
 		const userId = req.session.userId
 
 		let foundAuthor = false
+		console.log(foundArticle.author);
 		// is if this is the owner of the article
-		if(userId == foundArticle.author){
+		if(foundArticle.author && userId == foundArticle.author._id){
 			// if so, foundAuthor is true
 			foundAuthor = true
 		}
-
+		console.log(foundArticle);
+		console.log(userId);
 		const imageUrl = await cloudinary.url(`${foundArticle.imageId}.jpg`)
 		res.render('articles/show.ejs', {
 			imageUrl: imageUrl,
