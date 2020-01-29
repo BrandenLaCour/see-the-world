@@ -14,7 +14,7 @@
      </div>
 
    </div>
-    <div class="card mt-10 card-round" style="width: 40rem;">
+    <div class="card mt-10 card-round card-main" style="width: 40rem;">
   <img src="<%=!article.imageUrl ? cloudinary.url(article.imageId) : article.imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title"><%=article.title%></h3>
@@ -49,7 +49,7 @@
  <div class="side-container">
   <%if (article.author) {%>
      <div class="map">
-       <div class="card card-round" style="width: 15rem;">
+       <div class="card card-round card-main" style="width: 15rem;">
         <img src="<%=!article.author.imageUrl ? cloudinary.url(article.author.imageId) : article.author.imageUrl%>" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title"><%=article.author.firstName%></h5>

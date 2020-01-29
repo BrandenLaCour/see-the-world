@@ -169,3 +169,15 @@ nav {
 	color: blue;
 }
 
+
+.filter-card {
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 10px;
+	border: none;
+}
+
+
+#filter-submit {
+	width: 150px;
+	margin-top: 20px;
+}

@@ -4,7 +4,7 @@
 <h1 class='title'>Add A filter</h1>
 <h3><%=message%></h3>
 <div class="content-container">
-	<div class="card mt-10" style="width: 35rem;">
+	<div class="card mt-10 filter-card" style="width: 35rem;">
   <img id="mainPic" src="" class="card-img-top" alt="...">
   <div class="card-body" style="">
     <div class="row justify-content-between">
@@ -17,9 +17,9 @@
 		
 	</div>
 	<div class="row justify-content-center">
-		<div class="col-3">
-			<form method="POST" action="/articles/filter/<%=objectId%>?_method=PUT">
-				<button id='filter' name="filter" value="" class='btn btn-primary'>Submit</button>
+		<div class="col-4">
+			<form class="filter-submit" method="POST" action="/articles/filter/<%=objectId%>?_method=PUT">
+				<button id='filter-submit' name="filter" value="" class='btn btn-primary'>Submit</button>
 			</form>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
 	
 <% for(let i = 0; i < articles.length; i++) {%>
 				
-<div class="card article" style="width: 30rem;">
+<div class="card article card-main" style="width: 30rem;">
 	<a href="/articles/<%=articles[i].id%>" >
 	<img src="<%=!articles[i].imageUrl ? cloudinary.url(articles[i].imageId) : articles[i].imageUrl%>" class="card-img-top" alt="..."> 
 		
