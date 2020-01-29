@@ -1,7 +1,7 @@
 body {
 	background-image: url('https://i.imgur.com/kzkbANo.jpg');
 	background-repeat: no-repeat;
-	background-size: 100vw;
+	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Poppins', sans-serif;
 	margin-top: -10px;
@@ -63,9 +63,7 @@ li {
 }
 
 .comment-divider {
-
 	border-top: 1px solid grey;
-
 }
 
 .fil {
@@ -118,6 +116,20 @@ li {
 	margin-bottom: 5px;
 }
 
+/*nav {
+	background-color: rgba(120, 104, 104, 1);
+	height: 45px;
+	position: fixed;
+	z-index: 9999;
+	
+}*/
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #3344ff;
+    color:#ffffff;
+  }
+
+
 
 @media(max-width: 1600px) {
 	.nav-container {
@@ -130,7 +142,37 @@ li {
 		justify-content: flex-end;
 		width: 80vw;
 	}
+
+	nav {
+	background-color: rgba(120, 104, 104, 1);
+	height: 45px;
+	position: fixed;
+	z-index: 9999;
+
 }
+}
+
+@media(max-width: 992px) {
+	.nav-container {
+		display: flex;
+		width: 20vw;
+	}	
+
+	.nav-container-right {
+		display: flex;
+		justify-content: flex-end;
+		width: 80vw;
+	}
+
+	nav {
+	background-color: rgba(120, 104, 104, 1);
+	height: 8vh;
+	position: fixed;
+	z-index: 9999;
+	
+}
+}
+
 
 
 	.nav-container {
@@ -157,12 +199,7 @@ a {
 	color: white;
 }
 
-nav {
-	background-color: rgba(120, 104, 104, 1);
-	height: 45px;
-	position: fixed;
-	z-index: 9999;
-}
+
 
 .users {
 	border-radius: 30px;
@@ -191,4 +228,14 @@ footer {
 
 #user-articles-caption {
 	margin-top: 65vh;
+}
+
+.comments {
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+#comment-name {
+	color: black;
 }

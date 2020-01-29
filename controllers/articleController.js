@@ -14,21 +14,6 @@ router.get('/', async (req, res, next) => {
 	try {
 		const foundArticles = await Article.find({}).populate('author')
 
-		// // find most liked article
-		// let mostLikedArticleCount = 0
-		// let mostLikedArticleIndex = 0
-		// // loop trouhg each article
-		// for(let i = 0; i < foundArticles.length; i++) {
-		// 	// check which article has more likes
-		// 	if(mostLikedArticleCount <= foundArticles[i].likes.length) {
-		// 		mostLikedArticleCount = foundArticles[i].likes.length
-		// 		// get the position of the article with more likes
-		// 		mostLikedArticleIndex = i
-		// 	}
-		// }
-		// console.log(mostLikedArticleCount);
-		// console.log(foundArticles[mostLikedArticleIndex]);
-
 		const message = req.session.message
 		req.session.message = ''
 
@@ -240,7 +225,7 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
 // GET article show page
 router.get('/:id', async (req, res, next) => {
 	try {
-		const foundArticle = await Article.findById(req.params.id).populate('author')
+		const foundArticle = await Article.findById(req.params.id).populate('author').populate('comments.user')
 		const userId = req.session.userId
 		const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${MAP_API_KEY}&q=${foundArticle.location}`
 
