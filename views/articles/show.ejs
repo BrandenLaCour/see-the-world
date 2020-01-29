@@ -3,6 +3,18 @@
 
 <h1 class='title'>See The World</h1>
 <div class="content-container">
+   <div class="side-container">
+     <div class="map">
+       <iframe width="380"
+           height="330"
+           frameborder="0" style="border:0"
+           src="<%=mapUrl%>" allowfullscreen>
+  
+        </iframe>
+
+     </div>
+
+   </div>
     <div class="card mt-10" style="width: 35rem;">
   <img src="<%=!article.imageUrl ? cloudinary.url(article.imageId) : article.imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
@@ -30,9 +42,27 @@
         </form>
       </div>
     </div>
+
+
   </div>
-  
+ 
 </div>
+ <div class="side-container">
+  <%if (article.author) {%>
+     <div class="map">
+       <div class="card" style="width: 15rem;">
+        <img src="<%=!article.author.imageUrl ? cloudinary.url(article.author.imageId) : article.author.imageUrl%>" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title"><%=article.author.firstName%></h5>
+        <p class="card-text"><%=article.author.city%></p>
+       <a href="/users/<%=article.author._id%>/articles" class="btn btn-primary col-12 ">More By <%=article.author.firstName%></a>
+  </div>
+  <%}%>
+</div>
+       
+     </div>
+
+   </div>
 </div>
 
 <form id="comments-form" method="POST" action="/comments/<%=article._id%>">
@@ -84,12 +114,7 @@
           <%})%>
 
 
-<iframe width="300"
-  height="250"
-  frameborder="0" style="border:0"
-  src="<%=mapUrl%>" allowfullscreen>
-  
-</iframe>
+
 
 
 <script type="text/javascript">

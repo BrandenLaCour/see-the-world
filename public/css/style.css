@@ -10,7 +10,8 @@ body {
 
 .content-container {
 	display: flex;
-	justify-content: center
+	justify-content: space-around;
+
 
 }
 
@@ -45,7 +46,7 @@ body {
 
 
 #comments-text {
-	width: 38vw;
+	width: 30vw;
 }
 
 li {
@@ -61,3 +62,12 @@ li {
 .fil {
 	font-size: .8em;
 }
+
+.side-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 700px;
+	width: 400px;
+}
+
