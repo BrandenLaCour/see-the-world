@@ -39,6 +39,7 @@ router.post('/login', async (req, res, next) => {
                 req.session.userId = foundUser._id
                 req.session.loggedIn = true
                 req.session.message = `Welcome back ${req.session.username}`
+                req.session.firstName = foundUser.firstName
                 req.session.photoUrl = foundUser.imageUrl ? foundUser.imageUrl : cloudinary.url(foundUser.imageId)
 
 
