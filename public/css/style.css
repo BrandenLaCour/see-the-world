@@ -181,3 +181,14 @@ nav {
 	width: 150px;
 	margin-top: 20px;
 }
+
+footer {
+	display: flex;
+	color: white;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+#user-articles-caption {
+	margin-top: 65vh;
+}
