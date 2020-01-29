@@ -4,7 +4,7 @@ body {
 	background-size: 100vw;
 	background-attachment: fixed;
 	font-family: 'Poppins', sans-serif;
-
+	margin-top: -10px;
 }
 
 .required {
@@ -15,14 +15,14 @@ body {
 .content-container {
 	display: flex;
 	justify-content: space-around;
-
+	padding-top: 50px;
 
 }
 
 .article-container {
 	display: flex;
 	justify-content: center;
-
+	padding-top: 50px;
 	flex-wrap: wrap;
 }
 
@@ -118,21 +118,35 @@ li {
 	margin-bottom: 5px;
 }
 
-.nav-container {
-	display: flex;
-	width: 20vw;
+
+@media(max-width: 1600px) {
+	.nav-container {
+		display: flex;
+		width: 20vw;
+	}	
+
+	.nav-container-right {
+		display: flex;
+		justify-content: flex-end;
+		width: 79vw;
+	}
 }
+
+	.nav-container {
+		display: flex;
+		width: 20vw;
+	}	
 
 .nav-container-right {
 	display: flex;
 	justify-content: flex-end;
-	width: 79vw;
+	width: 80vw;
 }
 
 .img-icon {
 	border-radius: 50%;
-	width: 40px;
-	height: 30px;
+	width: 35px;
+	height: 25px;
 	margin-right: 10px;
 	text-decoration: none;
 }
@@ -142,10 +156,17 @@ a {
 }
 
 nav {
-	background-color: rgba(255,228,225, .6);
+	background-color: rgba(255,228,225, .8);
+	height: 53px;
+	position: fixed;
+	z-index: 9999;
 }
 
 .users {
 	border-radius: 30px;
 	color: blue;
 }
+
+
+
+
