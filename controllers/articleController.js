@@ -140,7 +140,6 @@ router.put('/filter/:id', async (req, res, next) => {
 			const foundUser = await User.findById(id)
 			//concat the new filter with the imageid and the url
 			const imageUrl =  `${cloudUrl}/${foundUser.imageId}`
-			
 			await User.findByIdAndUpdate(id, {imageUrl: imageUrl})
 			//add cloudinary url to imageUrl of user
 			res.redirect('/articles')
@@ -151,7 +150,6 @@ router.put('/filter/:id', async (req, res, next) => {
 			const foundArticle = await Article.findById(id)
 			//add cloudinary url to imageUrl of article
 			const imageUrl = `${cloudUrl}/${foundArticle.imageId}`
-
 			await Article.findByIdAndUpdate(id, {imageUrl: imageUrl})
 			res.redirect('/articles/' + foundArticle._id)
 
