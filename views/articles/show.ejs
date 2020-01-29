@@ -4,8 +4,8 @@
 <div class="content-container">
    <div class="side-container">
      <div class="map">
-       <iframe width="350"
-           height="300"
+       <iframe width="250"
+           height="280"
            frameborder="0" style="border-radius: 10px;"
            src="<%=mapUrl%>" allowfullscreen>
   
@@ -14,7 +14,7 @@
      </div>
 
    </div>
-    <div class="card mt-10 card-round" style="width: 35rem;">
+    <div class="card mt-10 card-round" style="width: 40rem;">
   <img src="<%=!article.imageUrl ? cloudinary.url(article.imageId) : article.imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title"><%=article.title%></h3>
