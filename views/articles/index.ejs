@@ -16,6 +16,14 @@
   	<p><%=articles[i].title%></p>
   	<small class='signature'>By: <%=articles[i].author ? `${articles[i].author.firstName} ${articles[i].author.lastName}` : 'Author Deleted' %></small>
   	<small><%=articles[i].date.toLocaleString()%></small>
+  	<div class="row">
+      <div class="col">
+        <small>Likes: <%=articles[i].likes.length%></small>
+        <form method="POST" action="/articles/likes/<%=articles[i]._id%>?_method=PUT">
+          
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 	
