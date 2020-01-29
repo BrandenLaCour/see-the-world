@@ -59,6 +59,16 @@ app.get('/', (req, res) => {
 
 
 
+app.get('*', (req, res) => {
+	res.render('404.ejs')	
+})
+
+
+
+
+
+
+
 app.listen(PORT, () => {
 console.log(`app is listening on port ${PORT}`);
 
