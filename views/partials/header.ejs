@@ -10,13 +10,23 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <nav class='nav bg-light mb-3'>
-	<a class='nav-link' href="<%=loggedIn ?  '/articles' :  '/auth/login' %>">Home / Logo</a> 
-	<% if (loggedIn) { -%>
-		<a class="nav-link" href="/articles/new">New Article</a>
-		<a class="nav-link" href="/users/profile">Profile</a>
-		<a class="nav-link" href="/users">Users</a>
-		<a class="nav-link" href="/auth/logout">Logout</a>
-	<% }-%>
+	<div class="nav-container">
+		<a class='nav-link' href="<%=loggedIn ?  '/articles' :  '/auth/login' %>"><img id="logo" src="https://i.imgur.com/eEUZoeB.png?2"></a> 
+		<% if (loggedIn) { -%>
+			<a class="nav-link" href="/users">Users</a>
+		<% } -%>
+	</div>
+	<div class="nav-container-right nav">
+		<% if (loggedIn) { -%>
+			<a class="nav-link" href="/users/profile"><img class="img-icon" src="<%=photoUrl%>"><%=username%></a>
+
+			<a class="nav-link" href="/articles/new">New Article</a>
+			<a class="nav-link" href="/auth/logout">Logout</a>
+		<% }-%>
+		
+	</div>
+	
 
 </nav>

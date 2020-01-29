@@ -31,7 +31,12 @@ body {
 }
 
 .title {
-	text-align: center
+	text-align: center;
+}
+
+.message {
+	color: white;
+	text-align: center;
 }
 
 .prof {
@@ -87,7 +92,7 @@ li {
 }
 
 .form {
-
+	background-color: white;
 	border-radius: 26px;
 
 }
@@ -103,3 +108,26 @@ li {
 
 }
 
+#logo {
+	width: 130px;
+	margin-bottom: 5px;
+}
+
+.nav-container {
+	display: flex;
+	width: 20vw;
+}
+
+.nav-container-right {
+	display: flex;
+	justify-content: flex-end;
+	width: 80vw;
+}
+
+.img-icon {
+	border-radius: 50%;
+	width: 40px;
+	height: 30px;
+	margin-right: 10px;
+	text-decoration: none;
+}
