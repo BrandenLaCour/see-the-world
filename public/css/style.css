@@ -100,6 +100,11 @@ li {
 .card {
 	box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4);
 	background-color: rgba(255,228,225, .9);
+
+}
+
+.content-container .card  {
+	margin-top: 30px;
 }
 
 .form-underline {
@@ -121,7 +126,7 @@ li {
 .nav-container-right {
 	display: flex;
 	justify-content: flex-end;
-	width: 80vw;
+	width: 79vw;
 }
 
 .img-icon {
@@ -130,4 +135,17 @@ li {
 	height: 30px;
 	margin-right: 10px;
 	text-decoration: none;
+}
+
+a {
+	color: white;
+}
+
+nav {
+	background-color: rgba(255,228,225, .6);
+}
+
+.users {
+	border-radius: 30px;
+	color: blue;
 }

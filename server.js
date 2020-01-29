@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 		res.locals.loggedIn = req.session.loggedIn
 		res.locals.message = req.session.message
 		res.locals.photoUrl = req.session.photoUrl
+		res.locals.firstName = req.session.firstName
 	} else {
 		res.locals.userId = false
 		res.locals.loggedIn = false
