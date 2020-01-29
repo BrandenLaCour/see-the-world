@@ -5,9 +5,9 @@
 <div class="content-container">
    <div class="side-container">
      <div class="map">
-       <iframe width="380"
-           height="330"
-           frameborder="0" style="border:0"
+       <iframe width="350"
+           height="300"
+           frameborder="0" style="border-radius: 10px;"
            src="<%=mapUrl%>" allowfullscreen>
   
         </iframe>
@@ -15,7 +15,7 @@
      </div>
 
    </div>
-    <div class="card mt-10" style="width: 35rem;">
+    <div class="card mt-10 card-round" style="width: 35rem;">
   <img src="<%=!article.imageUrl ? cloudinary.url(article.imageId) : article.imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title"><%=article.title%></h3>
@@ -50,7 +50,7 @@
  <div class="side-container">
   <%if (article.author) {%>
      <div class="map">
-       <div class="card" style="width: 15rem;">
+       <div class="card card-round" style="width: 15rem;">
         <img src="<%=!article.author.imageUrl ? cloudinary.url(article.author.imageId) : article.author.imageUrl%>" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title"><%=article.author.firstName%></h5>

@@ -1,8 +1,16 @@
 <%-include('../partials/header.ejs')%>
-<h1 class='title'>Edit Your Article</h1>
+<h1 class='title'></h1>
 <div class="content-container">
-    <div class="card" style="width: 30rem;">
+    <div class="card form" style="width: 30rem;">
       <div class="card-body">
+
+             <h3 class='title'> Edit Article</h3>
+       
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <h3 class='title'><div class='form-underline'></div></h3>
+        </div>
+      </div>
             
 <form method='POST' action="/articles/<%=article._id%>?_method=PUT" enctype="multipart/form-data">
   <div class="form-group title">

@@ -1,6 +1,9 @@
 body {
-	background-color: lightblue;
+	background-image: url('https://i.imgur.com/kzkbANo.jpg');
+	background-repeat: no-repeat;
+	background-size: 100vw;
 	font-family: 'Poppins', sans-serif;
+
 }
 
 .required {
@@ -72,14 +75,31 @@ li {
 }
 
 
+.card-round {
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
 
+.card-img-top {
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
 
+.form {
 
+	border-radius: 26px;
 
+}
 
+.card {
+	box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4);
+}
 
+.form-underline {
+	width: 170px;
+	border-bottom: 2px solid rgba(190, 190, 190, .5);
 
-
+}
 
 
 
