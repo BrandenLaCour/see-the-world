@@ -270,8 +270,6 @@ router.put('/likes/:id', async (req, res, next) => {
 		}
 
 
-		console.log(req.params.id);
-
 
 	} catch(err) {
 		next(err)

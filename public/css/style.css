@@ -112,6 +112,12 @@ li {
 
 }
 
+.message {
+
+margin-top: 30px;
+}
+
+
 #logo {
 	width: 130px;
 	margin-bottom: 5px;
@@ -125,10 +131,6 @@ li {
 	
 }*/
 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
-    background-color: #3344ff;
-    color:#ffffff;
-  }
   
   nav {
 	background-color: rgba(120, 104, 104, 1);
