@@ -324,7 +324,7 @@ router.delete('/:id', async (req, res, next) => {
 	try {
 		const foundArticle = await Article.findById(req.params.id)
 		const deletedArticle = await Article.findByIdAndRemove(req.params.id)
-		await cloudinary.uploader.destroy(foundArticle.imageId, (result) => { console.log(result)})
+		await cloudinary.uploader.destroy(foundArticle.imageId, (error, result) => { if (error) next(error)})
 		res.redirect('/articles')
 	}
 	catch(err){

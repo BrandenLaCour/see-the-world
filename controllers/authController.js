@@ -31,8 +31,6 @@ router.post('/login', async (req, res, next) => {
         if (foundUser) {
             // check that the password is correct
             const loginInfoIsValid = bcrypt.compareSync(req.body.password, foundUser.password)
-
-
             if (loginInfoIsValid) {
                 req.session.username = foundUser.username
                 req.session.userId = foundUser._id
@@ -40,8 +38,6 @@ router.post('/login', async (req, res, next) => {
                 req.session.message = `Welcome Back ${foundUser.firstName}`
                 req.session.firstName = foundUser.firstName
                 req.session.photoUrl = foundUser.imageUrl ? foundUser.imageUrl : cloudinary.url(foundUser.imageId)
-
-
 
                 res.redirect('/articles')
             } else {
@@ -59,8 +55,6 @@ router.post('/login', async (req, res, next) => {
         //if found check password
         // if pw is correct add username to req.session.username
         // redirect to home page redirect('/')
-
-
 
     } catch (err) {
         next(err)

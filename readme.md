@@ -25,6 +25,8 @@ npm i
 * You also have access to editing your profile, and editing your articles
 * Please note: If you create an article, and delete your account, that article will stay live for everyone to enjoy, unless you delete it. Future plans will add a delete all button
 
+![alt text](https://i.imgur.com/ODHDQih.png?1)
+
 ## Wireframes
 
 ![alt text](https://i.imgur.com/tI5ear6.jpg?4)
