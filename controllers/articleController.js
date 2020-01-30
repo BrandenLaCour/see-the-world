@@ -58,7 +58,7 @@ router.get('/filter', async (req, res, next) => {
 
 			}
 			else {
-				const cloudinaryUrl = cloudinary.url(`${foundUser.imageId}.jpg`)
+				const cloudinaryUrl = cloudinary.url(`${foundUser.imageId}`)
 				res.render('filter.ejs', {
 				message: message,
 				imageUrl: cloudinaryUrl,
@@ -91,7 +91,7 @@ router.get('/filter', async (req, res, next) => {
 			}
 			else {
 				
-				const cloudinaryUrl = cloudinary.url(`${foundArticle.imageId}.jpg`)
+				const cloudinaryUrl = cloudinary.url(`${foundArticle.imageId}`)
 				res.render('filter.ejs', {
 				message: message,
 				imageUrl: cloudinaryUrl,
@@ -119,6 +119,7 @@ router.put('/filter/:id', async (req, res, next) => {
 		
 		const filter = req.body.filter
 		const id = req.params.id
+		console.log('the new filter is',filter);
 		const cloudUrl = `${process.env.CLOUD_URL}${filter}`
 		if (req.session.filterState === 'profile'){
 			//if we are adding filter to profile
