@@ -154,6 +154,11 @@ margin-top: 30px;
 		width: 80vw;
 	}
 
+	.article-container {
+
+		padding-top: 10px;
+	}
+
 	nav {
 	background-color: rgba(120, 104, 104, 1);
 	height: 45px;
@@ -167,7 +172,7 @@ margin-top: 30px;
 	.nav-container {
 		display: flex;
 		width: 20vw;
-	}	
+	}
 
 	.nav-container-right {
 		display: flex;
@@ -238,7 +243,7 @@ footer {
 }
 
 #user-articles-caption {
-	margin-top: 65vh;
+	margin-top: 45vh;
 }
 
 .comments {
@@ -250,3 +255,19 @@ footer {
 #comment-name {
 	color: black;
 }
+
+
+@media(min-width: 991px){
+
+.content-container {
+	margin-top: 50px;
+}
+
+.article-container {
+	padding-top: 20px;
+}
+
+
+}
+
+
