@@ -119,7 +119,7 @@ router.put('/filter/:id', async (req, res, next) => {
 		
 		const filter = req.body.filter
 		const id = req.params.id
-		console.log('the new filter is',filter);
+		
 		const cloudUrl = `${process.env.CLOUD_URL}${filter}`
 		if (req.session.filterState === 'profile'){
 			//if we are adding filter to profile
@@ -127,6 +127,7 @@ router.put('/filter/:id', async (req, res, next) => {
 			//concat the new filter with the imageid and the url
 			const imageUrl =  `${cloudUrl}/${foundUser.imageId}`
 			await User.findByIdAndUpdate(id, {imageUrl: imageUrl})
+			req.session.photoUrl = imageUrl
 			//add cloudinary url to imageUrl of user
 			res.redirect('/articles')
 
