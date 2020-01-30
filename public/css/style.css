@@ -15,7 +15,7 @@ body {
 .content-container {
 	display: flex;
 	justify-content: space-around;
-	padding-top: 50px;
+	padding-top: 20px;
 
 }
 
@@ -37,6 +37,7 @@ body {
 .message {
 	color: white;
 	text-align: center;
+	padding-top: 60px;
 }
 
 .prof {

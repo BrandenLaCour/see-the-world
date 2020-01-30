@@ -23,8 +23,7 @@ router.get('/login', (req, res) => {
 // POST
 router.post('/login', async (req, res, next) => {
     try {
-        const foundUser = await User.findOne({ username: req.body.username })
-
+        const foundUser = await User.findOne({ username: req.body.username.toLowerCase() })
 
 
         // if the user is found check the password
@@ -102,7 +101,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
 
         // new user proposal
         const newUser = {
-            username: req.body.username,
+            username: req.body.username.toLowerCase(),
             password: hashedPassword,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -111,7 +110,7 @@ router.post('/register', upload.single('image'), async (req, res, next) => {
             favoritePlace: req.body.favoritePlace,
             imageId: ''
         }
-
+        
         // check if the username already exist
         const foundUser = await User.find({ username: newUser.username })
         // if does redirect to register
