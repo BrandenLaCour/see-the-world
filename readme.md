@@ -4,7 +4,7 @@ An app to share travel experiences with exciting photos, tips on traveling to th
 
 ## Getting started immediately
 
--Go here to see the deployed version. (http://www.heroku.com/seetheworld/etc)
+-Go here to see the deployed version. (https://cloudinary.com/documentation/node_integration#overview)
 
 ### Prerequisites
 
